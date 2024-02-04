@@ -15,19 +15,27 @@ export function App() {
     <React.Suspense fallback={null}>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link className="underline text-blue-800" to="/">
+            Home
+          </Link>
         </li>
 
         <li>
-          <Link to="/shop">Shop</Link>
+          <Link className="underline text-blue-800" to="/shop">
+            Shop
+          </Link>
         </li>
 
         <li>
-          <Link to="/cart">Cart</Link>
+          <Link className="underline text-blue-800" to="/cart">
+            Cart
+          </Link>
         </li>
 
         <li>
-          <Link to="/about">About</Link>
+          <Link className="underline text-blue-800" to="/about">
+            About
+          </Link>
         </li>
       </ul>
       <Routes>
