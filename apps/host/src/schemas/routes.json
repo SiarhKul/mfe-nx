@@ -1,0 +1,17 @@
+[
+  {
+    "path": "shop",
+    "app": "Shop",
+    "moduleName": "Module"
+  },
+  {
+    "path": "cart",
+    "app": "Cart",
+    "moduleName": "Module"
+  },
+  {
+    "path": "about",
+    "app": "About",
+    "moduleName": "Module"
+  }
+]

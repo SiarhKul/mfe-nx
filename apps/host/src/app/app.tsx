@@ -1,52 +1,51 @@
 import * as React from 'react';
-
 import NxWelcome from './nx-welcome';
 
 import { Link, Route, Routes } from 'react-router-dom';
+import { routerSchema, TRouterSchema } from '../schemas/router.schema';
+import { navSchema } from '../schemas/nav.schema';
 
-const Shop = React.lazy(() => import('shop/Module'));
+const AppRouter = () => (
+  <Routes>
+    <Route path="/" element={<NxWelcome />} />
+    {routerSchema.map((route: TRouterSchema, i) => {
+      const RemoteComponent = route.component;
 
-const Cart = React.lazy(() => import('cart/Module'));
-
-const About = React.lazy(() => import('about/Module'));
+      return (
+        <Route
+          key={i}
+          path={route.path}
+          element={
+            <main>
+              {
+                <React.Suspense>
+                  <RemoteComponent />
+                </React.Suspense>
+              }
+            </main>
+          }
+        />
+      );
+    })}
+  </Routes>
+);
 
 export function App() {
   return (
     <React.Suspense fallback={null}>
       <ul>
-        <li>
-          <Link className="underline text-blue-800" to="/">
-            Home
-          </Link>
-        </li>
-
-        <li>
-          <Link className="underline text-blue-800" to="/shop">
-            Shop
-          </Link>
-        </li>
-
-        <li>
-          <Link className="underline text-blue-800" to="/cart">
-            Cart
-          </Link>
-        </li>
-
-        <li>
-          <Link className="underline text-blue-800" to="/about">
-            About
-          </Link>
-        </li>
+        {navSchema.map((nav: any) => {
+          return (
+            <li key={nav.name}>
+              <Link className="underline text-blue-800" to={nav.path}>
+                {nav.name}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
-      <Routes>
-        <Route path="/" element={<NxWelcome title="host" />} />
 
-        <Route path="/shop" element={<Shop />} />
-
-        <Route path="/cart" element={<Cart />} />
-
-        <Route path="/about" element={<About />} />
-      </Routes>
+      <AppRouter />
     </React.Suspense>
   );
 }

@@ -5,7 +5,7 @@
  Delete this file and get started with your project!
  * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  */
-export function NxWelcome({ title }: { title: string }) {
+export function NxWelcome() {
   return (
     <div className="wrapper">
       <div className="container">
@@ -14,7 +14,7 @@ export function NxWelcome({ title }: { title: string }) {
             Hello world!
           </h1>
           <span> Hello there, </span>
-          Welcome {title} 👋
+          Welcome host 👋
         </div>
       </div>
     </div>
