@@ -1,23 +1,30 @@
 import { Route, Routes } from 'react-router-dom';
 import NxWelcome from '../nx-welcome';
 import * as React from 'react';
-const Shop = React.lazy(() => import('shop/Module'));
+import { routerSchema, TRouterSchema } from '../../schemas/router.schema';
 
-const Cart = React.lazy(() => import('cart/Module'));
+const AppRouter = () => (
+  <Routes>
+    <Route path="/" element={<NxWelcome />} />
+    {routerSchema.map((route: TRouterSchema, i) => {
+      const RemoteComponent = route.component;
 
-const About = React.lazy(() => import('about/Module'));
-
-const AppRoutes = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<NxWelcome />} />
-
-      <Route path="/shop" element={<Shop />} />
-
-      <Route path="/cart" element={<Cart />} />
-
-      <Route path="/about" element={<About />} />
-    </Routes>
-  );
-};
-export default AppRoutes;
+      return (
+        <Route
+          key={i}
+          path={route.path}
+          element={
+            <main>
+              {
+                <React.Suspense>
+                  <RemoteComponent />
+                </React.Suspense>
+              }
+            </main>
+          }
+        />
+      );
+    })}
+  </Routes>
+);
+export default AppRouter;

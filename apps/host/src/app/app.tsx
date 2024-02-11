@@ -1,50 +1,21 @@
 import * as React from 'react';
-import NxWelcome from './nx-welcome';
 
-import { Link, Route, Routes } from 'react-router-dom';
-import { routerSchema, TRouterSchema } from '../schemas/router.schema';
+import { Link } from 'react-router-dom';
 import { navSchema } from '../schemas/nav.schema';
+import { LangSwitcher } from './componets/LangSwitcher';
+import { useTranslation } from 'react-i18next';
+import AppRouter from './router/AppRouter';
+import { NavBar } from './componets/NavBar';
 
-const AppRouter = () => (
-  <Routes>
-    <Route path="/" element={<NxWelcome />} />
-    {routerSchema.map((route: TRouterSchema, i) => {
-      const RemoteComponent = route.component;
-
-      return (
-        <Route
-          key={i}
-          path={route.path}
-          element={
-            <main>
-              {
-                <React.Suspense>
-                  <RemoteComponent />
-                </React.Suspense>
-              }
-            </main>
-          }
-        />
-      );
-    })}
-  </Routes>
-);
-
+//todo: add transitions
 export function App() {
+  const { t } = useTranslation('nav');
+
   return (
     <React.Suspense fallback={null}>
-      <ul>
-        {navSchema.map((nav: any) => {
-          return (
-            <li key={nav.name}>
-              <Link className="underline text-blue-800" to={nav.path}>
-                {nav.name}
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-
+      <LangSwitcher />
+      <h1>{t('home')}</h1>
+      <NavBar />
       <AppRouter />
     </React.Suspense>
   );
