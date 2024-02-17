@@ -1,16 +1,11 @@
 import * as React from 'react';
-
-import { Link } from 'react-router-dom';
-import { navSchema } from '../schemas/nav.schema';
 import { LangSwitcher } from './componets/LangSwitcher';
-import { useTranslation } from 'react-i18next';
 import AppRouter from './router/AppRouter';
 import { NavBar } from './componets/NavBar';
+import useTranslationHost from '../i18n/useTranslationHost';
 
-//todo: add transitions
 export function App() {
-  const { t } = useTranslation('nav');
-
+  const { t } = useTranslationHost();
   return (
     <React.Suspense fallback={null}>
       <LangSwitcher />
