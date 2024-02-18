@@ -1,5 +1,8 @@
 {
-  "home": "Home",
-  "about": "About",
-  "card": "Card"
+  "NavItems": {
+    "home": "Home",
+    "about": "About",
+    "card": "Card",
+    "shop": "Shop"
+  }
 }
