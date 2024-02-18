@@ -17,9 +17,10 @@
     "resolveJsonModule": true,
     "paths": {
       "@mfe-nx/i18n": ["libs/shared/src/index.ts"],
+      "@mfe-nx/internalisation": ["libs/shared/internalisation/src/index.ts"],
       "about/Module": ["apps/about/src/remote-entry.ts"],
       "cart/Module": ["apps/cart/src/remote-entry.ts"],
-      "shop/Module": ["apps/shop/src/remote-entry.ts"],
+      "shop/Module": ["apps/shop/src/remote-entry.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

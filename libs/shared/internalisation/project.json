@@ -1,0 +1,26 @@
+{
+  "name": "internalisation",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/internalisation/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/internalisation",
+        "main": "libs/shared/internalisation/src/index.ts",
+        "tsConfig": "libs/shared/internalisation/tsconfig.lib.json",
+        "assets": ["libs/shared/internalisation/*.md"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/shared/internalisation/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,6 +1,6 @@
-import { useInstanceTranslation } from '@mfe-nx/i18n';
 import translationEn from '../i18n/en/nav.json';
 import translationRu from '../i18n/ru/nav.json';
+import { useInstanceTranslation } from '@mfe-nx/internalisation';
 
 const NAMESPACE = 'host';
 

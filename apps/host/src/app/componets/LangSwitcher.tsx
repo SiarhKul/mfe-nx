@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { i18nService } from '@mfe-nx/i18n';
+import { i18nService } from '@mfe-nx/internalisation';
 
 const options = [
   { value: 'en-GB', text: 'Eng' },
