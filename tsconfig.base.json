@@ -20,6 +20,7 @@
       "@mfe-nx/internalisation": ["libs/shared/internalisation/src/index.ts"],
       "about/Module": ["apps/about/src/remote-entry.ts"],
       "cart/Module": ["apps/cart/src/remote-entry.ts"],
+      "navbar/Module": ["apps/navbar/src/remote-entry.ts"],
       "shop/Module": ["apps/shop/src/remote-entry.ts"]
     }
   },

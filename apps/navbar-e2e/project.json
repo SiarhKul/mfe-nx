@@ -1,0 +1,26 @@
+{
+  "name": "navbar-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/navbar-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/navbar-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "navbar:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "navbar:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "navbar:serve-static"
+        }
+      }
+    }
+  },
+  "implicitDependencies": ["navbar"],
+  "tags": []
+}
