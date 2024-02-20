@@ -9,13 +9,7 @@ export function NxWelcome() {
   return (
     <div className="wrapper">
       <div className="container">
-        <div id="welcome">
-          <h1 className="text-3xl font-bold underline bg-red-500">
-            Hello world!
-          </h1>
-          <span> Hello there, </span>
-          Welcome host 👋
-        </div>
+        <h1>HOST MFE</h1>
       </div>
     </div>
   );

@@ -2,14 +2,18 @@ import * as React from 'react';
 import { LangSwitcher } from './componets/LangSwitcher';
 import AppRouter from './router/AppRouter';
 import { NavBar } from './componets/NavBar';
-import useTranslationHost from '../i18n/useTranslationHost';
+import { IconContext } from 'react-icons';
 
 export function App() {
   return (
     <React.Suspense fallback={null}>
-      <LangSwitcher />
-      <NavBar />
-      <AppRouter />
+      <IconContext.Provider
+        value={{ color: 'blue', className: 'global-class-name' }}
+      >
+        <LangSwitcher />
+        <NavBar />
+        <AppRouter />
+      </IconContext.Provider>
     </React.Suspense>
   );
 }

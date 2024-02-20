@@ -9,10 +9,13 @@ export const NavBar = () => {
   return (
     <ul>
       {navSchema.map((nav) => {
+        const Icon = nav.icon;
         return (
           <li key={nav.name}>
             <Link className="underline text-blue-800" to={nav.path}>
-              {t(nav.translationKey)}
+              <div className="flex gap-2 items-center">
+                <Icon /> {t(nav.translationKey)}
+              </div>
             </Link>
           </li>
         );

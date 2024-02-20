@@ -2,7 +2,9 @@
   "name": "@mfe-nx/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "run-host": "nx serve host --devRemotes=cart,shop,about"
+  },
   "private": true,
   "devDependencies": {
     "@babel/core": "^7.14.5",
@@ -56,6 +58,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-i18next": "^14.0.5",
+    "react-icons": "^5.0.1",
     "react-router-dom": "6.11.2",
     "tslib": "^2.3.0"
   }
