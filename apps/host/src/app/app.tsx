@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { LangSwitcher } from './componets/LangSwitcher';
 import AppRouter from './router/AppRouter';
-import { NavBar } from './componets/NavBar';
 import { IconContext } from 'react-icons';
+import { LangSwitcher } from './componets/LangSwitcher';
+import { NavBar } from './componets/NavBar';
+const Nav = React.lazy(() => import('navbar/Module'));
 
 export function App() {
   return (
@@ -10,6 +11,7 @@ export function App() {
       <IconContext.Provider
         value={{ color: 'blue', className: 'global-class-name' }}
       >
+        <Nav />
         <LangSwitcher />
         <NavBar />
         <AppRouter />

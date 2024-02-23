@@ -6,7 +6,8 @@ const About = React.lazy(() => import('about/Module'));
 
 export type TRouterSchema = {
   path: string;
-  component: LazyExoticComponent<() => JSX.Element>;
+  component: any;
+  // component: LazyExoticComponent<() => JSX.Element>;
   nameMenuItem: string;
   // | (({ title }: { title: string }) => JSX.Element);
 };
