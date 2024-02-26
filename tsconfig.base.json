@@ -18,6 +18,7 @@
     "paths": {
       "@mfe-nx/i18n": ["libs/shared/src/index.ts"],
       "@mfe-nx/internalisation": ["libs/shared/internalisation/src/index.ts"],
+      "@mfe-nx/uikit": ["libs/shared/uikit/src/index.ts"],
       "about/Module": ["apps/about/src/remote-entry.ts"],
       "cart/Module": ["apps/cart/src/remote-entry.ts"],
       "navbar/Module": ["apps/navbar/src/remote-entry.ts"],
