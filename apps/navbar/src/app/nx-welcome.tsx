@@ -1,10 +1,8 @@
-import { LangSwitcher } from '../entities/LangSwitcher/LangSwitcher';
 import { NavBar } from '../entities/Navbar/NavBar';
 
-export function NxWelcome({ title }: { title: string }) {
+export function NxWelcome() {
   return (
     <section id="navbar-mf">
-      <LangSwitcher />
       <NavBar />
     </section>
   );

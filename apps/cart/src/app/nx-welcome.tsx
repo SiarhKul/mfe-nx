@@ -10,10 +10,7 @@ export function NxWelcome({ title }: { title: string }) {
     <div className="wrapper bg-yellow-50">
       <div className="container">
         <div id="welcome">
-          <h1>
-            <span> Hello there, </span>
-            Welcome {title} 👋
-          </h1>
+          <h1>Card</h1>
         </div>
       </div>
     </div>
