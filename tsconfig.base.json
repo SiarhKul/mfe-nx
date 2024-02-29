@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "resolveJsonModule": true,
     "paths": {
+      "@mfe-nx/build-config": ["libs/shared/configs/build-config/src/index.ts"],
       "@mfe-nx/i18n": ["libs/shared/src/index.ts"],
       "@mfe-nx/internalisation": ["libs/shared/internalisation/src/index.ts"],
       "@mfe-nx/uikit": ["libs/shared/uikit/src/index.ts"],
