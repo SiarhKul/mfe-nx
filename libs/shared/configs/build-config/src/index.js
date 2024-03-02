@@ -1,1 +1,1 @@
-// export * from './lib/build-config';
+// add export for use  "@mfe-nx/build-config"
