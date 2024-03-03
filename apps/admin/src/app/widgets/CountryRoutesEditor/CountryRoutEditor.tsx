@@ -8,19 +8,22 @@ import { useFormik } from 'formik';
 
 export default function FormikDoc() {
   const toast = useRef(null);
-  const [items, setItems] = useState([]);
+  const [departureCity, setDepartureCity] = useState([]);
+  const [destinationCity, setDestinationCity] = useState([]);
 
-  const search = (event: any) => {
-    console.log(event);
-    // setItems([...Array(10).keys()].map((item) => event.query + '-' + item));
-  };
+  // const search = (event: any) => {
+  //   console.log(event);
+  //   // setItems([...Array(10).keys()].map((item) => event.query + '-' + item));
+  // };
   const RoutEditorSchema = Yup.object().shape({
-    item: Yup.string().required('Required'),
+    departureCity: Yup.string().required('Required'),
+    destinationCity: Yup.string().required('Required'),
   });
 
   const formik: any = useFormik({
     initialValues: {
-      item: '',
+      departureCity: '',
+      destinationCity: '',
     },
     validationSchema: RoutEditorSchema,
     onSubmit: (values: any) => {
@@ -38,24 +41,41 @@ export default function FormikDoc() {
       <small className="p-error">&nbsp;</small>
     );
   };
-
+  //todo: Add postcss config to work with css
+  //todo Add prefix
   return (
     <div className="card flex justify-content-center">
       <form onSubmit={formik.handleSubmit} className="flex flex-column gap-2">
-        <label htmlFor="ac_item">Value</label>
-        <Toast ref={toast} />
-        <AutoComplete
-          inputId="ac_item"
-          name="item"
-          value={formik.values.item}
-          suggestions={items}
-          // completeMethod={search}
-          className={classNames({ 'p-invalid': isFormFieldInvalid('item') })}
-          onChange={(e) => {
-            formik.setFieldValue('item', e.value);
-          }}
-        />
-        {getFormErrorMessage('item')}
+        <div className="flex gap-2">
+          <label htmlFor="ac_item">Departure city</label>
+          <AutoComplete
+            inputId="departureCity"
+            name="departureCity"
+            value={formik.values.item}
+            suggestions={departureCity}
+            // completeMethod={search}
+            className={classNames({ 'p-invalid': isFormFieldInvalid('item') })}
+            onChange={(e) => {
+              formik.setFieldValue('departureCity', e.value);
+            }}
+          />
+          {getFormErrorMessage('departureCity')}
+        </div>
+        <div className="flex gap-2">
+          <label htmlFor="destinationCity">Destination City</label>
+          <AutoComplete
+            inputId="destinationCity"
+            name="destinationCity"
+            value={formik.values.item}
+            suggestions={departureCity}
+            // completeMethod={search}
+            className={classNames({ 'p-invalid': isFormFieldInvalid('item') })}
+            onChange={(e) => {
+              formik.setFieldValue('destinationCity', e.value);
+            }}
+          />
+          {getFormErrorMessage('destinationCity')}
+        </div>
         <Button type="submit" label="Submit" />
       </form>
     </div>
