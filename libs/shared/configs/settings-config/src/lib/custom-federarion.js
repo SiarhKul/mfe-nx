@@ -1,4 +1,4 @@
-export function customFederation(config) {
+function customFederation(config) {
   const newConfig = { ...config };
   console.log('NEW_CONFIG_WEBPACK', newConfig);
   newConfig.module.rules.push({
@@ -15,4 +15,5 @@ export function customFederation(config) {
   });
   return newConfig;
 }
-// module.exports = customFederation;
+
+module.exports = customFederation;

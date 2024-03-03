@@ -1,7 +1,7 @@
 {
-  "name": "build-config",
+  "name": "settings-config",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/shared/configs/build-config/src",
+  "sourceRoot": "libs/shared/configs/settings-config/src",
   "projectType": "library",
   "targets": {},
   "tags": []
