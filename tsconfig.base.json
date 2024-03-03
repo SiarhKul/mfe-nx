@@ -16,12 +16,13 @@
     "baseUrl": ".",
     "resolveJsonModule": true,
     "paths": {
+      "@mfe-nx/internalisation": ["libs/shared/internalisation/src/index.ts"],
       "@mfe-nx/settings-config": [
         "libs/shared/configs/settings-config/src/index.js"
       ],
-      "@mfe-nx/internalisation": ["libs/shared/internalisation/src/index.ts"],
       "@mfe-nx/uikit": ["libs/shared/uikit/src/index.ts"],
       "about/Module": ["apps/about/src/remote-entry.ts"],
+      "admin/Module": ["apps/admin/src/remote-entry.ts"],
       "cart/Module": ["apps/cart/src/remote-entry.ts"],
       "navbar/Module": ["apps/navbar/src/remote-entry.ts"],
       "shop/Module": ["apps/shop/src/remote-entry.ts"]

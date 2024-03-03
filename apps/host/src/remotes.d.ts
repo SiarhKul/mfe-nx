@@ -5,3 +5,5 @@ declare module 'card/Module';
 declare module 'shop/Module';
 
 declare module 'navbar/Module';
+
+declare module 'admin/Module';

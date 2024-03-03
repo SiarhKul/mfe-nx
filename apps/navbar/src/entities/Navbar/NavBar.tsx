@@ -42,6 +42,13 @@ export const NavBar = () => {
         },
       },
       {
+        label: t('NavItems.admin'),
+        icon: 'pi pi-user-edit',
+        command: () => {
+          navigate('/admin');
+        },
+      },
+      {
         template: () => {
           return <LanguagesSwitcher />;
         },
