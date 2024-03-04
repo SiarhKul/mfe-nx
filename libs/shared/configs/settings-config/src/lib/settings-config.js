@@ -6,8 +6,9 @@
 const { join } = require('path');
 const twConfig = require('./tailwind.config');
 
-function postCssConfig(dirname, ctx) {
-  console.log('CTX', ctx);
+function postCssConfig(dirname, prefix, ctx) {
+  console.log('-------------------------------PREFIX', prefix);
+  console.log('-------------------------------CTX', ctx);
   return {
     plugins: {
       tailwindcss: {
