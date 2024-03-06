@@ -41,56 +41,48 @@ export default function FormikDoc() {
       <small className="p-error">&nbsp;</small>
     );
   };
-  //todo: Add postcss config to work with css
   //todo Add prefix
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <div className="flex flex-col gap-6">
-        <div>
-          <label htmlFor="ac_item">Departure city</label>
-          <AutoComplete
-            inputId="departureCity"
-            name="departureCity"
-            value={formik.values.item}
-            suggestions={departureCity}
-            // completeMethod={search}
-            className={classNames({ 'p-invalid': isFormFieldInvalid('item') })}
-            onChange={(e) => {
-              formik.setFieldValue('departureCity', e.value);
-            }}
-          />
-          {getFormErrorMessage('departureCity')}
+    <div className="p-4">
+      <form onSubmit={formik.handleSubmit}>
+        <div className="flex flex-col gap-2">
+          <div>
+            <label htmlFor="ac_item">Departure city</label>
+            <AutoComplete
+              inputId="departureCity"
+              name="departureCity"
+              value={formik.values.item}
+              suggestions={departureCity}
+              // completeMethod={search}
+              className={classNames({
+                'p-invalid': isFormFieldInvalid('item'),
+              })}
+              onChange={(e) => {
+                formik.setFieldValue('departureCity', e.value);
+              }}
+            />
+            {getFormErrorMessage('departureCity')}
+          </div>
+          <div>
+            <label htmlFor="destinationCity">Destination City</label>
+            <AutoComplete
+              inputId="destinationCity"
+              name="destinationCity"
+              value={formik.values.item}
+              suggestions={destinationCity}
+              // completeMethod={search}
+              className={classNames({
+                'p-invalid': isFormFieldInvalid('item'),
+              })}
+              onChange={(e) => {
+                formik.setFieldValue('destinationCity', e.value);
+              }}
+            />
+            {getFormErrorMessage('destinationCity')}
+          </div>
         </div>
-        <div>
-          <label htmlFor="destinationCity">Destination City</label>
-          <AutoComplete
-            inputId="destinationCity"
-            name="destinationCity"
-            value={formik.values.item}
-            suggestions={destinationCity}
-            // completeMethod={search}
-            className={classNames({ 'p-invalid': isFormFieldInvalid('item') })}
-            onChange={(e) => {
-              formik.setFieldValue('destinationCity', e.value);
-            }}
-          />
-          {getFormErrorMessage('destinationCity')}
-        </div>
-      </div>
-      <Button type="submit" label="Submit" />
-    </form>
+        <Button type="submit" label="Submit" />
+      </form>
+    </div>
   );
 }
-/*@layer tailwind-base, primereact, tailwind-utilities;
-
-@layer tailwind-base {
-  @tailwind base;
-}
-
-@layer tailwind-utilities {
-  @tailwind components;
-  @tailwind utilities;
-}
-
-@import "./assets/theming/theme.css";
-@import 'primeicons/primeicons.css';*/
