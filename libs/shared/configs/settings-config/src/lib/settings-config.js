@@ -5,10 +5,11 @@
 
 const { join } = require('path');
 const twConfig = require('./tailwind.config');
-
-function postCssConfig(dirname, prefix, ctx) {
-  console.log('-------------------------------PREFIX', prefix);
-  console.log('-------------------------------CTX', ctx);
+const createPostCssPrefix = require('./createPostCssPrefix');
+// console.log('=>=======================================', twConfig);
+function postCssConfig(dirname, appPrefix, ctx) {
+  // console.log('-------------------------------PREFIX', appPrefix);
+  // console.log('-------------------------------CTX', ctx);
   return {
     plugins: {
       tailwindcss: {
@@ -26,7 +27,9 @@ function postCssConfig(dirname, prefix, ctx) {
         },
       },
       autoprefixer: {},
-      // 'postcss-prefix-selector':  false,
+      // 'postcss-prefix-selector': appPrefix
+      //   ? createPostCssPrefix(appPrefix)
+      //   : false,
     },
   };
 }

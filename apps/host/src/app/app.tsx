@@ -11,8 +11,10 @@ export function App() {
         <IconContext.Provider
           value={{ color: 'blue', className: 'global-class-name' }}
         >
-          <Navbar />
-          <AppRouter />
+          <main className="bg-stone-400">
+            <Navbar />
+            <AppRouter />
+          </main>
         </IconContext.Provider>
       </PrimeReactProvider>
     </React.Suspense>

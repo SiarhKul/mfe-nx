@@ -44,9 +44,9 @@ export default function FormikDoc() {
   //todo: Add postcss config to work with css
   //todo Add prefix
   return (
-    <div className="card flex justify-content-center">
-      <form onSubmit={formik.handleSubmit} className="flex flex-column gap-2">
-        <div className="flex gap-2">
+    <form onSubmit={formik.handleSubmit}>
+      <div className="flex flex-col gap-6">
+        <div>
           <label htmlFor="ac_item">Departure city</label>
           <AutoComplete
             inputId="departureCity"
@@ -61,13 +61,13 @@ export default function FormikDoc() {
           />
           {getFormErrorMessage('departureCity')}
         </div>
-        <div className="flex gap-2">
+        <div>
           <label htmlFor="destinationCity">Destination City</label>
           <AutoComplete
             inputId="destinationCity"
             name="destinationCity"
             value={formik.values.item}
-            suggestions={departureCity}
+            suggestions={destinationCity}
             // completeMethod={search}
             className={classNames({ 'p-invalid': isFormFieldInvalid('item') })}
             onChange={(e) => {
@@ -76,8 +76,8 @@ export default function FormikDoc() {
           />
           {getFormErrorMessage('destinationCity')}
         </div>
-        <Button type="submit" label="Submit" />
-      </form>
-    </div>
+      </div>
+      <Button type="submit" label="Submit" />
+    </form>
   );
 }

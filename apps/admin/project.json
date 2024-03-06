@@ -19,6 +19,7 @@
         "styles": ["apps/admin/src/styles.scss"],
         "scripts": [],
         "webpackConfig": "apps/admin/webpack.config.ts",
+        "postcssConfig": "apps/admin/postcss.config.js"
       },
       "configurations": {
         "development": {
