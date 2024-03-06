@@ -81,3 +81,16 @@ export default function FormikDoc() {
     </form>
   );
 }
+/*@layer tailwind-base, primereact, tailwind-utilities;
+
+@layer tailwind-base {
+  @tailwind base;
+}
+
+@layer tailwind-utilities {
+  @tailwind components;
+  @tailwind utilities;
+}
+
+@import "./assets/theming/theme.css";
+@import 'primeicons/primeicons.css';*/

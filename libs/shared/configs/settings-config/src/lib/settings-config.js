@@ -6,25 +6,22 @@
 const { join } = require('path');
 const twConfig = require('./tailwind.config');
 const createPostCssPrefix = require('./createPostCssPrefix');
-// console.log('=>=======================================', twConfig);
 function postCssConfig(dirname, appPrefix, ctx) {
+  // console.log('22222222222', join(dirname, 'tailwind.config.js'));
   // console.log('-------------------------------PREFIX', appPrefix);
   // console.log('-------------------------------CTX', ctx);
+  /*  return {
+    plugins: {
+      tailwindcss: {
+        config: join(dirname, 'tailwind.config.js'),
+      },
+      autoprefixer: {},
+    },
+  };*/
   return {
     plugins: {
       tailwindcss: {
-        config: {
-          presets: [twConfig],
-          content: [
-            join(
-              dirname,
-              '{src,pages,components}/**/*!(*.stories|*.spec).{ts,tsx,html}'
-            ),
-          ],
-          corePlugins: {
-            preflight: false, //preflight appended separately
-          },
-        },
+        config: join(__dirname, 'tailwind.config.js'),
       },
       autoprefixer: {},
       // 'postcss-prefix-selector': appPrefix
@@ -35,3 +32,39 @@ function postCssConfig(dirname, appPrefix, ctx) {
 }
 
 module.exports = postCssConfig;
+
+//function postCssConfig(dirname, appPrefix, ctx) {
+//   // console.log('22222222222', join(dirname, 'tailwind.config.js'));
+//   // console.log('-------------------------------PREFIX', appPrefix);
+//   // console.log('-------------------------------CTX', ctx);
+//   /*  return {
+//     plugins: {
+//       tailwindcss: {
+//         config: join(dirname, 'tailwind.config.js'),
+//       },
+//       autoprefixer: {},
+//     },
+//   };*/
+//   return {
+//     plugins: {
+//       tailwindcss: {
+//         config: {
+//           presets: [twConfig],
+//           content: [
+//             join(
+//               dirname,
+//               '{src,pages,components}/**/*!(*.stories|*.spec).{ts,tsx,html}'
+//             ),
+//           ],
+//           // corePlugins: {
+//           //   preflight: false, //preflight appended separately
+//           // },
+//         },
+//       },
+//       autoprefixer: {},
+//       // 'postcss-prefix-selector': appPrefix
+//       //   ? createPostCssPrefix(appPrefix)
+//       //   : false,
+//     },
+//   };
+// }
