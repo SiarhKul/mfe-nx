@@ -2,12 +2,15 @@ import React, { useState, useRef } from 'react';
 import { Button } from 'primereact/button';
 import { classNames } from 'primereact/utils';
 import { AutoComplete } from 'primereact/autocomplete';
-import { Toast } from 'primereact/toast';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 
+interface IRouteEditor {
+  departureCity: string;
+  destinationCity: string;
+}
+
 export default function FormikDoc() {
-  const toast = useRef(null);
   const [departureCity, setDepartureCity] = useState([]);
   const [destinationCity, setDestinationCity] = useState([]);
 
@@ -20,13 +23,13 @@ export default function FormikDoc() {
     destinationCity: Yup.string().required('Required'),
   });
 
-  const formik: any = useFormik({
+  const formik: any = useFormik<IRouteEditor>({
     initialValues: {
       departureCity: '',
       destinationCity: '',
     },
     validationSchema: RoutEditorSchema,
-    onSubmit: (values: any) => {
+    onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
     },
   });

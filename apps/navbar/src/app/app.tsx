@@ -3,9 +3,9 @@ import NxWelcome from './nx-welcome';
 
 export function App() {
   return (
-    <div>
+    <section className="navbar">
       <NxWelcome />
-    </div>
+    </section>
   );
 }
 

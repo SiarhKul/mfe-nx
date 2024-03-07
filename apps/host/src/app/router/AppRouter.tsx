@@ -14,13 +14,13 @@ const AppRouter = () => (
           key={i}
           path={route.path}
           element={
-            <main>
+            <div>
               {
                 <React.Suspense>
                   <RemoteComponent />
                 </React.Suspense>
               }
-            </main>
+            </div>
           }
         />
       );

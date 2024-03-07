@@ -2,9 +2,9 @@ import CountryRouteEditor from '../widgets/CountryRoutesEditor/CountryRoutEditor
 
 export function App() {
   return (
-    <div className="admin">
+    <section className="admin">
       <CountryRouteEditor />
-    </div>
+    </section>
   );
 }
 
