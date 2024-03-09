@@ -1,4 +1,4 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore, Reducer } from '@reduxjs/toolkit';
 import {
   persistStore,
   FLUSH,
@@ -9,23 +9,34 @@ import {
   REHYDRATE,
 } from 'redux-persist';
 import { pokemonApi } from '../api/routerEditorSliceApi';
+import logger from 'redux-logger';
+import { object } from 'yup';
+import { usersSliceApi } from '../api/usersSliceApi';
 
-const rootReducer = combineReducers({
+const rootReducer: any = combineReducers({
+  // [usersSliceApi.reducerPath]: usersSliceApi.reducer,
   [pokemonApi.reducerPath]: pokemonApi.reducer,
 });
 
+const superRootReducer = {};
+
+export const addReducerToCombineReducersFn = (asyncReducers = object) => {
+  return combineReducers({ ...asyncReducers, ...superRootReducer });
+};
+
+console.log('rootReducer', superRootReducer);
 export const configStore = () => {
   const store = configureStore({
     reducer: rootReducer,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    middleware: (getDefaultMiddleware) => [
-      ...getDefaultMiddleware({
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
         serializableCheck: {
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         },
-      }).concat(pokemonApi.middleware),
-    ],
+      })
+        // .concat(logger)
+        .concat(pokemonApi.middleware)
+        .concat(usersSliceApi.middleware),
   });
 
   const persistor = persistStore(store);
