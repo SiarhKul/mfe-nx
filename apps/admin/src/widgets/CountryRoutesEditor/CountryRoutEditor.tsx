@@ -4,6 +4,7 @@ import { classNames } from 'primereact/utils';
 import { AutoComplete } from 'primereact/autocomplete';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
+import { useGetPokemonByNameQuery } from '../../app/redux/api/routerEditorSliceApi';
 
 interface IRouteEditor {
   departureCity: string;
@@ -13,6 +14,8 @@ interface IRouteEditor {
 export default function FormikDoc() {
   const [departureCity, setDepartureCity] = useState([]);
   const [destinationCity, setDestinationCity] = useState([]);
+  const { data, error, isLoading } = useGetPokemonByNameQuery('bulbasaur');
+  console.log('=>(CountryRoutEditor.tsx:18) data', data);
 
   // const search = (event: any) => {
   //   console.log(event);

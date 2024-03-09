@@ -1,15 +1,34 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import {
+  persistStore,
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+} from 'redux-persist';
 import { pokemonApi } from '../api/routerEditorSliceApi';
 
-export const store = configureStore({
-  reducer: {
-    [pokemonApi.reducerPath]: pokemonApi.reducer,
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(pokemonApi.middleware),
+const rootReducer = combineReducers({
+  [pokemonApi.reducerPath]: pokemonApi.reducer,
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type TRootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type TAppDispatch = typeof store.dispatch;
+export const configStore = () => {
+  const store = configureStore({
+    reducer: rootReducer,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    middleware: (getDefaultMiddleware) => [
+      ...getDefaultMiddleware({
+        serializableCheck: {
+          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        },
+      }).concat(pokemonApi.middleware),
+    ],
+  });
+
+  const persistor = persistStore(store);
+
+  return { store, persistor };
+};
