@@ -17,6 +17,7 @@
     "resolveJsonModule": true,
     "paths": {
       "@mfe-nx/internalisation": ["libs/shared/internalisation/src/index.ts"],
+      "@mfe-nx/redux": ["libs/shared/redux/src/index.ts"],
       "@mfe-nx/settings-config": [
         "libs/shared/configs/settings-config/src/index.js"
       ],

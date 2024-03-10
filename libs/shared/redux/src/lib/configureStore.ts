@@ -12,8 +12,9 @@ import {
   REGISTER,
   REHYDRATE,
 } from 'redux-persist';
-import { pokemonApi } from '../api/routerEditorSliceApi';
 import { GetDefaultMiddleware } from '@reduxjs/toolkit/dist/getDefaultMiddleware';
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import { pokemonApi } from '../../../../../apps/admin/src/app/redux/api/routerEditorSliceApi';
 
 const dynamicMiddleware = createDynamicMiddleware();
 export const configStore = () => {
@@ -48,7 +49,6 @@ export function createReducerManager(initialReducers: any) {
 
   return {
     getReducerMap: () => reducers,
-
     addMiddleware: (middleware: any) => {
       dynamicMiddleware.addMiddleware(middleware);
     },
@@ -65,16 +65,24 @@ export function createReducerManager(initialReducers: any) {
       return combinedReducer(state, action);
     },
 
-    add: (key: any, reducer: any) => {
-      // if (!key || reducers[key]) {
-      //   console.log('ffffffffffffffffff');
-      //   return;
-      // }
-
-      reducers[key] = reducer;
-
+    add: (aditionReducers: any[]) => {
+      aditionReducers.forEach((rds: any) => {
+        reducers[rds.key] = rds.reducer;
+      });
+      console.log('444444444444444444', reducers);
       combinedReducer = combineReducers(reducers);
     },
+
+    // add: (key: any, reducer: any) => {
+    //   // if (!key || reducers[key]) {
+    //   //   console.log('ffffffffffffffffff');
+    //   //   return;
+    //   // }
+    //
+    //   reducers[key] = reducer;
+    //
+    //   combinedReducer = combineReducers(reducers);
+    // },
 
     remove: (key: any) => {
       if (!key || !reducers[key]) {
