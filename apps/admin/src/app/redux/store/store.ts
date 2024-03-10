@@ -12,14 +12,12 @@ import {
   REGISTER,
   REHYDRATE,
 } from 'redux-persist';
-import { pokemonApi } from '../api/routerEditorSliceApi';
 import { GetDefaultMiddleware } from '@reduxjs/toolkit/dist/getDefaultMiddleware';
+// import { pokemonApi } from '../../../../../apps/admin/src/app/redux/api/routerEditorSliceApi';
 
 const dynamicMiddleware = createDynamicMiddleware();
 export const configStore = () => {
-  const reducerManager = createReducerManager({
-    [pokemonApi.reducerPath]: pokemonApi.reducer,
-  });
+  const reducerManager = createReducerManager({});
 
   const config = {
     reducer: reducerManager.reduce,
@@ -28,9 +26,8 @@ export const configStore = () => {
         serializableCheck: {
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         },
-      })
-        .prepend(dynamicMiddleware.middleware)
-        .concat([pokemonApi.middleware]),
+      }).prepend(dynamicMiddleware.middleware),
+    // .concat([pokemonApi.middleware]),
   };
 
   const store = configureStore(config);

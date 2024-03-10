@@ -13,14 +13,11 @@ import {
   REHYDRATE,
 } from 'redux-persist';
 import { GetDefaultMiddleware } from '@reduxjs/toolkit/dist/getDefaultMiddleware';
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import { pokemonApi } from '../../../../../apps/admin/src/app/redux/api/routerEditorSliceApi';
+// import { pokemonApi } from '../../../../../apps/admin/src/app/redux/api/routerEditorSliceApi';
 
 const dynamicMiddleware = createDynamicMiddleware();
 export const configStore = () => {
-  const reducerManager = createReducerManager({
-    [pokemonApi.reducerPath]: pokemonApi.reducer,
-  });
+  const reducerManager = createReducerManager({});
 
   const config = {
     reducer: reducerManager.reduce,
@@ -29,9 +26,8 @@ export const configStore = () => {
         serializableCheck: {
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         },
-      })
-        .prepend(dynamicMiddleware.middleware)
-        .concat([pokemonApi.middleware]),
+      }).prepend(dynamicMiddleware.middleware),
+    // .concat([pokemonApi.middleware]),
   };
 
   const store = configureStore(config);
@@ -49,6 +45,7 @@ export function createReducerManager(initialReducers: any) {
 
   return {
     getReducerMap: () => reducers,
+
     addMiddleware: (middleware: any) => {
       dynamicMiddleware.addMiddleware(middleware);
     },
@@ -65,24 +62,16 @@ export function createReducerManager(initialReducers: any) {
       return combinedReducer(state, action);
     },
 
-    add: (aditionReducers: any[]) => {
-      aditionReducers.forEach((rds: any) => {
-        reducers[rds.key] = rds.reducer;
-      });
-      console.log('444444444444444444', reducers);
+    add: (key: any, reducer: any) => {
+      // if (!key || reducers[key]) {
+      //   console.log('ffffffffffffffffff');
+      //   return;
+      // }
+
+      reducers[key] = reducer;
+
       combinedReducer = combineReducers(reducers);
     },
-
-    // add: (key: any, reducer: any) => {
-    //   // if (!key || reducers[key]) {
-    //   //   console.log('ffffffffffffffffff');
-    //   //   return;
-    //   // }
-    //
-    //   reducers[key] = reducer;
-    //
-    //   combinedReducer = combineReducers(reducers);
-    // },
 
     remove: (key: any) => {
       if (!key || !reducers[key]) {

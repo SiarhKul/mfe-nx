@@ -1,26 +1,26 @@
 import CountryRouteEditor from '../widgets/CountryRoutesEditor/CountryRoutEditor';
 import { Suspense } from 'react';
 import { Provider } from 'react-redux';
-import { combineReducers } from '@reduxjs/toolkit';
 import { pokemonApi } from './redux/api/routerEditorSliceApi';
 import { usersSliceApi } from './redux/api/usersSliceApi';
-import { PersistGate } from 'redux-persist/integration/react';
-import { configStore } from './redux/store/store';
-const { store, persistor, reducerManager } = configStore();
+import { configStore } from '@mfe-nx/redux';
+// import { configStore } from './redux/store/store';
+// eslint-disable-next-line @nx/enforce-module-boundaries
+const { persistor, store, reducerManager } = configStore();
 
 export type TRootState = ReturnType<typeof store.getState>;
 
 reducerManager.add(usersSliceApi.reducerPath, usersSliceApi.reducer);
+reducerManager.add(pokemonApi.reducerPath, pokemonApi.reducer);
 reducerManager.addMiddleware(usersSliceApi.middleware);
+reducerManager.addMiddleware(pokemonApi.middleware);
 
 export function App() {
   return (
     <section className="admin">
       <Suspense fallback="Admin app is loading...">
         <Provider store={store}>
-          {/*<PersistGate persistor={persistor} loading="...Loading persistor">*/}
           <CountryRouteEditor />
-          {/*</PersistGate>*/}
         </Provider>
       </Suspense>
     </section>
