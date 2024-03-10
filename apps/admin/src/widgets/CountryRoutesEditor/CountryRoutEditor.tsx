@@ -18,7 +18,7 @@ export default function FormikDoc() {
   const { data, error, isLoading } = useGetPokemonByNameQuery('bulbasaur');
   const { data: users } = useGetUsersQuery();
   console.log('=>(CountryRoutEditor.tsx:17) users', users);
-  console.log('=>(CountryRoutEditor.tsx:18) data', data);
+  console.log('=>(CountryRoutEditor.tsx:18) pokemon', data);
 
   // const search = (event: any) => {
   //   console.log(event);

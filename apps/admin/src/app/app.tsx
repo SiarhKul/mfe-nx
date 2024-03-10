@@ -5,15 +5,13 @@ import { Provider } from 'react-redux';
 import { combineReducers } from '@reduxjs/toolkit';
 import { pokemonApi } from './redux/api/routerEditorSliceApi';
 import { usersSliceApi } from './redux/api/usersSliceApi';
+import { PersistGate } from 'redux-persist/integration/react';
 
-const { store, persistor } = configStore();
+const { store, persistor, reducerManager } = configStore();
 export type TRootState = ReturnType<typeof store.getState>;
 
-const newRootReducer = combineReducers({
-  [usersSliceApi.reducerPath]: usersSliceApi.reducer,
-});
-
-store.replaceReducer(newRootReducer);
+reducerManager.add(usersSliceApi.reducerPath, usersSliceApi.reducer);
+// reducerManager.addMiddleware([pokemonApi.middleware]);
 
 export function App() {
   return (
