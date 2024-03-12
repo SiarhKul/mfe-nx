@@ -7,7 +7,7 @@ import {
 } from 'primereact/autocomplete';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { ICity, useGetUsersQuery } from '../../app/redux/api/usersSliceApi';
+import { ICity, useGetCityQuery } from '../../app/redux/api/citySliceApi';
 import { useGetAllRoutesQuery } from '../../app/redux/api/getAllRouteSliceApi';
 
 interface IRouteEditor {
@@ -25,7 +25,7 @@ export default function FormikDoc() {
   const [departureCity, setDepartureCity] = useState<ICity[]>([]);
   const [destinationCity, setDestinationCity] = useState<ICity[]>([]);
   const { data: routes } = useGetAllRoutesQuery();
-  const { data: countries } = useGetUsersQuery();
+  const { data: countries } = useGetCityQuery();
 
   const formik = useFormik<IRouteEditor>({
     initialValues: {
@@ -77,7 +77,7 @@ export default function FormikDoc() {
                 'p-invalid': isFormFieldInvalid('departureCity'),
               })}
               onChange={(e) => {
-                formik.setFieldValue('departureCity', e.value);
+                formik.setFieldValue('departureCity', e.value.name);
               }}
             />
             {getFormErrorMessage('departureCity')}
@@ -96,15 +96,17 @@ export default function FormikDoc() {
                 'p-invalid': isFormFieldInvalid('destinationCity'),
               })}
               onChange={(e) => {
-                formik.setFieldValue('destinationCity', e.value);
+                formik.setFieldValue('destinationCity', e.value.name);
               }}
             />
             {getFormErrorMessage('destinationCity')}
           </div>
         </div>
-        any
+
         <Button type="submit" label="Submit" />
       </form>
+
+      <div>{JSON.stringify(routes, undefined, 2)}</div>
     </div>
   );
 }

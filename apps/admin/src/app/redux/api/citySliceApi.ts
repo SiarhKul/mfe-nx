@@ -5,16 +5,16 @@ export interface ICity {
   name: string;
 }
 
-export const usersSliceApi = createApi({
-  reducerPath: 'usersSliceApi',
+export const citySliceApi = createApi({
+  reducerPath: 'citySliceApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:8080/api',
   }),
   endpoints: (builder) => ({
-    getUsers: builder.query<ICity[], void>({
+    getCity: builder.query<ICity[], void>({
       query: () => 'city',
     }),
   }),
 });
 
-export const { useGetUsersQuery } = usersSliceApi;
+export const { useGetCityQuery } = citySliceApi;
