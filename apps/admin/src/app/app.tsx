@@ -4,14 +4,21 @@ import { Provider } from 'react-redux';
 import { pokemonApi } from './redux/api/routerEditorSliceApi';
 import { usersSliceApi } from './redux/api/usersSliceApi';
 import { configStore } from '@mfe-nx/redux';
+import { getAllRouteSliceApi } from './redux/api/getAllRouteSliceApi';
 // import { configStore } from './redux/store/store';
 // eslint-disable-next-line @nx/enforce-module-boundaries
 const { persistor, store, reducerManager } = configStore();
 
 export type TRootState = ReturnType<typeof store.getState>;
 
+reducerManager.add(
+  getAllRouteSliceApi.reducerPath,
+  getAllRouteSliceApi.reducer
+);
 reducerManager.add(usersSliceApi.reducerPath, usersSliceApi.reducer);
 reducerManager.add(pokemonApi.reducerPath, pokemonApi.reducer);
+
+reducerManager.addMiddleware(getAllRouteSliceApi.middleware);
 reducerManager.addMiddleware(usersSliceApi.middleware);
 reducerManager.addMiddleware(pokemonApi.middleware);
 

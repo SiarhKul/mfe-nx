@@ -1,49 +1,57 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Button } from 'primereact/button';
 import { classNames } from 'primereact/utils';
-import { AutoComplete } from 'primereact/autocomplete';
+import {
+  AutoComplete,
+  AutoCompleteCompleteEvent,
+} from 'primereact/autocomplete';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { useGetPokemonByNameQuery } from '../../app/redux/api/routerEditorSliceApi';
-import { useGetUsersQuery } from '../../app/redux/api/usersSliceApi';
+import { ICity, useGetUsersQuery } from '../../app/redux/api/usersSliceApi';
+import { useGetAllRoutesQuery } from '../../app/redux/api/getAllRouteSliceApi';
 
 interface IRouteEditor {
   departureCity: string;
   destinationCity: string;
 }
 
+type URouteEditor = keyof IRouteEditor;
+const ROUT_EDITOR_SCHEMA = Yup.object().shape({
+  departureCity: Yup.string().required('Required'),
+  destinationCity: Yup.string().required('Required'),
+});
+
 export default function FormikDoc() {
-  const [departureCity, setDepartureCity] = useState([]);
-  const [destinationCity, setDestinationCity] = useState([]);
-  const { data, error, isLoading } = useGetPokemonByNameQuery('bulbasaur');
-  const { data: users } = useGetUsersQuery();
-  console.log('=>(CountryRoutEditor.tsx:17) users', users);
-  console.log('=>(CountryRoutEditor.tsx:18) pokemon', data);
+  const [departureCity, setDepartureCity] = useState<ICity[]>([]);
+  const [destinationCity, setDestinationCity] = useState<ICity[]>([]);
+  const { data: routes } = useGetAllRoutesQuery();
+  const { data: countries } = useGetUsersQuery();
 
-  // const search = (event: any) => {
-  //   console.log(event);
-  //   // setItems([...Array(10).keys()].map((item) => event.query + '-' + item));
-  // };
-  const RoutEditorSchema = Yup.object().shape({
-    departureCity: Yup.string().required('Required'),
-    destinationCity: Yup.string().required('Required'),
-  });
-
-  const formik: any = useFormik<IRouteEditor>({
+  const formik = useFormik<IRouteEditor>({
     initialValues: {
       departureCity: '',
       destinationCity: '',
     },
-    validationSchema: RoutEditorSchema,
+    validationSchema: ROUT_EDITOR_SCHEMA,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
     },
   });
 
-  const isFormFieldInvalid = (name: any) =>
+  const searchDepartureCity = (event: AutoCompleteCompleteEvent) => {
+    const suggestions = countries ? _filterCountries(event, countries) : [];
+    setDepartureCity(suggestions);
+  };
+
+  const searchDestinationCity = (event: AutoCompleteCompleteEvent) => {
+    const suggestions = countries ? _filterCountries(event, countries) : [];
+    setDestinationCity(suggestions);
+  };
+
+  const isFormFieldInvalid = (name: URouteEditor) =>
     !!(formik.touched[name] && formik.errors[name]);
 
-  const getFormErrorMessage = (name: any) => {
+  const getFormErrorMessage = (name: URouteEditor) => {
     return isFormFieldInvalid(name) ? (
       <small className="p-error">{formik.errors[name]}</small>
     ) : (
@@ -58,13 +66,15 @@ export default function FormikDoc() {
           <div>
             <label htmlFor="ac_item">Departure city</label>
             <AutoComplete
+              dropdown
+              field="name"
               inputId="departureCity"
               name="departureCity"
-              value={formik.values.item}
+              value={formik.values.departureCity}
               suggestions={departureCity}
-              // completeMethod={search}
+              completeMethod={searchDepartureCity}
               className={classNames({
-                'p-invalid': isFormFieldInvalid('item'),
+                'p-invalid': isFormFieldInvalid('departureCity'),
               })}
               onChange={(e) => {
                 formik.setFieldValue('departureCity', e.value);
@@ -75,13 +85,15 @@ export default function FormikDoc() {
           <div>
             <label htmlFor="destinationCity">Destination City</label>
             <AutoComplete
+              dropdown
+              field="name"
               inputId="destinationCity"
               name="destinationCity"
-              value={formik.values.item}
+              value={formik.values.destinationCity}
               suggestions={destinationCity}
-              // completeMethod={search}
+              completeMethod={searchDestinationCity}
               className={classNames({
-                'p-invalid': isFormFieldInvalid('item'),
+                'p-invalid': isFormFieldInvalid('destinationCity'),
               })}
               onChange={(e) => {
                 formik.setFieldValue('destinationCity', e.value);
@@ -90,8 +102,25 @@ export default function FormikDoc() {
             {getFormErrorMessage('destinationCity')}
           </div>
         </div>
+        any
         <Button type="submit" label="Submit" />
       </form>
     </div>
   );
 }
+
+const _filterCountries = (
+  event: AutoCompleteCompleteEvent,
+  countries: ICity[]
+) => {
+  let _filteredCountries;
+
+  if (!event.query.trim().length) {
+    _filteredCountries = [...countries];
+  } else {
+    _filteredCountries = countries.filter((country) => {
+      return country.name.toLowerCase().startsWith(event.query.toLowerCase());
+    });
+  }
+  return _filteredCountries;
+};
