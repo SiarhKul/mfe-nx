@@ -9,12 +9,13 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { ICity, useGetCityQuery } from '../../app/redux/api/citySliceApi';
 import { useGetAllRoutesQuery } from '../../app/redux/api/getAllRouteSliceApi';
+import { useSaveRouteMutation } from '../../app/redux/api/routerEditorSliceApi';
 
 interface IRouteEditor {
   departureCity: string;
   destinationCity: string;
 }
-
+//todo: save route
 type URouteEditor = keyof IRouteEditor;
 const ROUT_EDITOR_SCHEMA = Yup.object().shape({
   departureCity: Yup.string().required('Required'),
@@ -24,8 +25,9 @@ const ROUT_EDITOR_SCHEMA = Yup.object().shape({
 export default function FormikDoc() {
   const [departureCity, setDepartureCity] = useState<ICity[]>([]);
   const [destinationCity, setDestinationCity] = useState<ICity[]>([]);
-  const { data: routes } = useGetAllRoutesQuery();
+  const { data: routes, refetch: refetchAllRoutes } = useGetAllRoutesQuery();
   const { data: countries } = useGetCityQuery();
+  const [saveRoute, saveRouteReturn] = useSaveRouteMutation();
 
   const formik = useFormik<IRouteEditor>({
     initialValues: {
@@ -33,8 +35,9 @@ export default function FormikDoc() {
       destinationCity: '',
     },
     validationSchema: ROUT_EDITOR_SCHEMA,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values) => {
+      await saveRoute(values);
+      refetchAllRoutes();
     },
   });
 
@@ -77,7 +80,9 @@ export default function FormikDoc() {
                 'p-invalid': isFormFieldInvalid('departureCity'),
               })}
               onChange={(e) => {
-                formik.setFieldValue('departureCity', e.value.name);
+                _isObject(e.value)
+                  ? formik.setFieldValue('departureCity', e.value.name)
+                  : formik.setFieldValue('departureCity', e.value);
               }}
             />
             {getFormErrorMessage('departureCity')}
@@ -96,7 +101,9 @@ export default function FormikDoc() {
                 'p-invalid': isFormFieldInvalid('destinationCity'),
               })}
               onChange={(e) => {
-                formik.setFieldValue('destinationCity', e.value.name);
+                _isObject(e.value)
+                  ? formik.setFieldValue('destinationCity', e.value.name)
+                  : formik.setFieldValue('destinationCity', e.value);
               }}
             />
             {getFormErrorMessage('destinationCity')}
@@ -110,7 +117,7 @@ export default function FormikDoc() {
     </div>
   );
 }
-
+//---------------------------------helpers
 const _filterCountries = (
   event: AutoCompleteCompleteEvent,
   countries: ICity[]
@@ -126,3 +133,7 @@ const _filterCountries = (
   }
   return _filteredCountries;
 };
+
+function _isObject(o: any) {
+  return o !== null && typeof o === 'object' && Array.isArray(o) === false;
+}

@@ -1,7 +1,7 @@
 import CountryRouteEditor from '../widgets/CountryRoutesEditor/CountryRoutEditor';
 import { Suspense } from 'react';
 import { Provider } from 'react-redux';
-import { pokemonApi } from './redux/api/routerEditorSliceApi';
+import { routerApiSlice } from './redux/api/routerEditorSliceApi';
 import { citySliceApi } from './redux/api/citySliceApi';
 import { configStore } from '@mfe-nx/redux';
 import { getAllRouteSliceApi } from './redux/api/getAllRouteSliceApi';
@@ -16,11 +16,11 @@ reducerManager.add(
   getAllRouteSliceApi.reducer
 );
 reducerManager.add(citySliceApi.reducerPath, citySliceApi.reducer);
-reducerManager.add(pokemonApi.reducerPath, pokemonApi.reducer);
+reducerManager.add(routerApiSlice.reducerPath, routerApiSlice.reducer);
 
 reducerManager.addMiddleware(getAllRouteSliceApi.middleware);
 reducerManager.addMiddleware(citySliceApi.middleware);
-reducerManager.addMiddleware(pokemonApi.middleware);
+reducerManager.addMiddleware(routerApiSlice.middleware);
 
 export function App() {
   return (

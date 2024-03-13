@@ -2,14 +2,18 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 // Define a service using a base URL and expected endpoints
-export const pokemonApi = createApi({
+export const routerApiSlice = createApi({
   reducerPath: 'routeEditorApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://pokeapi.co/api/v2/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8080/api' }),
   endpoints: (builder) => ({
-    getPokemonByName: builder.query<any, string>({
-      query: (name) => `pokemon/${name}`,
+    saveRoute: builder.mutation({
+      query: (route) => ({
+        url: `routes`,
+        method: 'POST',
+        body: route,
+      }),
     }),
   }),
 });
 
-export const { useGetPokemonByNameQuery } = pokemonApi;
+export const { useSaveRouteMutation } = routerApiSlice;
