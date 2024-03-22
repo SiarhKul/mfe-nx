@@ -15,8 +15,8 @@ interface IRouteEditor {
   departureCity: string;
   destinationCity: string;
 }
-//todo: save route
 type URouteEditor = keyof IRouteEditor;
+
 const ROUT_EDITOR_SCHEMA = Yup.object().shape({
   departureCity: Yup.string().required('Required'),
   destinationCity: Yup.string().required('Required'),
@@ -26,6 +26,7 @@ export default function FormikDoc() {
   const [departureCity, setDepartureCity] = useState<ICity[]>([]);
   const [destinationCity, setDestinationCity] = useState<ICity[]>([]);
   const { data: routes, refetch: refetchAllRoutes } = useGetAllRoutesQuery();
+  console.log('=>(CountryRoutEditor.tsx:29) routes', routes);
   const { data: countries } = useGetCityQuery();
   const [saveRoute, saveRouteReturn] = useSaveRouteMutation();
 

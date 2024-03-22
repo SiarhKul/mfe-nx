@@ -17,7 +17,6 @@ export const i18nService = {
 
   async changeLanguage(language: string): Promise<void> {
     for (const i18nInstance of this.registeredInstances.values()) {
-      console.log(i18nInstance);
       await i18nInstance.changeLanguage(language);
     }
   },
@@ -70,7 +69,7 @@ export const i18nService = {
   },
 };
 
-// local helper function
+//--------------------------------------------- local helper function
 const _isDev = () => {
   if (!window) return false;
 
