@@ -18,6 +18,15 @@
     "paths": {
       "@mfe-nx/internalisation": ["libs/shared/internalisation/src/index.ts"],
       "@mfe-nx/redux": ["libs/shared/redux/src/index.ts"],
+      "@mfe-nx/redux-admin": [
+        "libs/shared/redux-enties/redux-admin/src/index.ts"
+      ],
+      "@mfe-nx/redux-host": [
+        "libs/shared/redux-enties/redux-host/src/index.ts"
+      ],
+      "@mfe-nx/redux-navbar": [
+        "libs/shared/redux-enties/redux-navbar/src/index.ts"
+      ],
       "@mfe-nx/settings-config": [
         "libs/shared/configs/settings-config/src/index.js"
       ],

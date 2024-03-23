@@ -1,0 +1,26 @@
+{
+  "name": "redux-navbar",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/redux-enties/redux-navbar/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/redux-enties/redux-navbar",
+        "main": "libs/shared/redux-enties/redux-navbar/src/index.ts",
+        "tsConfig": "libs/shared/redux-enties/redux-navbar/tsconfig.lib.json",
+        "assets": ["libs/shared/redux-enties/redux-navbar/*.md"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/shared/redux-enties/redux-navbar/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}

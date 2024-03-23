@@ -1,0 +1,26 @@
+{
+  "name": "redux-host",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/redux-enties/redux-host/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/redux-enties/redux-host",
+        "main": "libs/shared/redux-enties/redux-host/src/index.ts",
+        "tsConfig": "libs/shared/redux-enties/redux-host/tsconfig.lib.json",
+        "assets": ["libs/shared/redux-enties/redux-host/*.md"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/shared/redux-enties/redux-host/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}

@@ -27,6 +27,7 @@ export function createReducerManager(initialReducers: any) {
     getReducerMap: () => reducers,
 
     addMiddleware: (middleware: any) => {
+      console.log('dddd', middleware);
       dynamicMiddleware.addMiddleware(middleware);
     },
 
@@ -47,7 +48,7 @@ export function createReducerManager(initialReducers: any) {
       //   console.log('ffffffffffffffffff');
       //   return;
       // }
-
+      console.log('44444444444444', key, reducer);
       reducers[key] = reducer;
 
       combinedReducer = combineReducers(reducers);
@@ -56,9 +57,11 @@ export function createReducerManager(initialReducers: any) {
 }
 
 export const configStore = () => {
-  const reducerManager = createReducerManager({
+  /*  const reducerManager = createReducerManager({
     [userSliceApi.reducerPath]: userSliceApi.reducer,
-  });
+  });*/
+
+  const reducerManager = createReducerManager({});
 
   const config = {
     reducer: reducerManager.reduce,

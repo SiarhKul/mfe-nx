@@ -1,0 +1,26 @@
+{
+  "name": "redux-admin",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/redux-enties/redux-admin/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/redux-enties/redux-admin",
+        "main": "libs/shared/redux-enties/redux-admin/src/index.ts",
+        "tsConfig": "libs/shared/redux-enties/redux-admin/tsconfig.lib.json",
+        "assets": ["libs/shared/redux-enties/redux-admin/*.md"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/shared/redux-enties/redux-admin/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}
