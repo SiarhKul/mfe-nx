@@ -15,7 +15,7 @@
         "baseHref": "/",
         "main": "apps/about/src/main.ts",
         "tsConfig": "apps/about/tsconfig.app.json",
-        "assets": ["apps/about/src/favicon.ico", "apps/about/src/assets"],
+        "assets": ["apps/about/src/favicon.ico", "apps/about/src/shared/assets"],
         "styles": ["apps/about/src/styles.scss"],
         "scripts": [],
         "webpackConfig": "apps/about/webpack.config.ts"

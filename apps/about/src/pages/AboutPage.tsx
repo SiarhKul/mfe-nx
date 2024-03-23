@@ -5,15 +5,15 @@
  Delete this file and get started with your project!
  * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  */
-export function NxWelcome({ title }: { title: string }) {
+
+import { DocumentLoader } from '../entities';
+
+export function AboutPage({ title }: { title: string }) {
   return (
     <div id="welcome">
-      <h1>
-        <span> Hello there, </span>
-        Welcome {title} 👋
-      </h1>
+      <DocumentLoader />
     </div>
   );
 }
 
-export default NxWelcome;
+export default AboutPage;
