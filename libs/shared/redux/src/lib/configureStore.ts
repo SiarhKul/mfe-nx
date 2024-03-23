@@ -13,8 +13,12 @@ import {
   REHYDRATE,
 } from 'redux-persist';
 import { GetDefaultMiddleware } from '@reduxjs/toolkit/dist/getDefaultMiddleware';
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import { userSliceApi } from '../../../../../apps/host/src/app/redux/apiSlices/userApiSlice';
+import { userSliceApi } from '@mfe-nx/redux-navbar';
+import {
+  citySliceApi,
+  getAllRouteSliceApi,
+  routerApiSlice,
+} from '@mfe-nx/redux-admin';
 
 const dynamicMiddleware = createDynamicMiddleware();
 
@@ -48,7 +52,6 @@ export function createReducerManager(initialReducers: any) {
       //   console.log('ffffffffffffffffff');
       //   return;
       // }
-      console.log('44444444444444', key, reducer);
       reducers[key] = reducer;
 
       combinedReducer = combineReducers(reducers);
@@ -57,11 +60,12 @@ export function createReducerManager(initialReducers: any) {
 }
 
 export const configStore = () => {
-  /*  const reducerManager = createReducerManager({
+  const reducerManager = createReducerManager({
     [userSliceApi.reducerPath]: userSliceApi.reducer,
-  });*/
-
-  const reducerManager = createReducerManager({});
+    [citySliceApi.reducerPath]: citySliceApi.reducer,
+    [getAllRouteSliceApi.reducerPath]: getAllRouteSliceApi.reducer,
+    [routerApiSlice.reducerPath]: routerApiSlice.reducer,
+  });
 
   const config = {
     reducer: reducerManager.reduce,
@@ -71,9 +75,13 @@ export const configStore = () => {
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         },
       })
-        .concat([userSliceApi.middleware])
+        .concat([
+          userSliceApi.middleware,
+          citySliceApi.middleware,
+          getAllRouteSliceApi.middleware,
+          routerApiSlice.middleware,
+        ])
         .prepend(dynamicMiddleware.middleware),
-    // .concat([pokemonApi.middleware]),
   };
 
   const store = configureStore(config);

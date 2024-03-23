@@ -7,9 +7,12 @@ import {
 } from 'primereact/autocomplete';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { ICity, useGetCityQuery } from '../../app/redux/api/citySliceApi';
-import { useGetAllRoutesQuery } from '../../app/redux/api/getAllRouteSliceApi';
-import { useSaveRouteMutation } from '../../app/redux/api/routerEditorSliceApi';
+import {
+  ICity,
+  useGetAllRoutesQuery,
+  useGetCityQuery,
+  useSaveRouteMutation,
+} from '@mfe-nx/redux-admin';
 
 interface IRouteEditor {
   departureCity: string;
@@ -26,7 +29,6 @@ export default function FormikDoc() {
   const [departureCity, setDepartureCity] = useState<ICity[]>([]);
   const [destinationCity, setDestinationCity] = useState<ICity[]>([]);
   const { data: routes, refetch: refetchAllRoutes } = useGetAllRoutesQuery();
-  console.log('=>(CountryRoutEditor.tsx:29) routes', routes);
   const { data: countries } = useGetCityQuery();
   const [saveRoute, saveRouteReturn] = useSaveRouteMutation();
 

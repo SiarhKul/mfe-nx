@@ -4,21 +4,14 @@ import { useMemo } from 'react';
 import useTranslationNavBar from '../../app/i18n/useTranslationNavBar';
 import { Menubar } from 'primereact/menubar';
 import { MenuItem } from 'primereact/menuitem';
-import { Button } from 'primereact/button';
 import LanguagesSwitcher from '../LangSwitcher/LangugesSwitcher';
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import { useGetAllRoutesQuery } from '../../../../admin/src/app/redux/api/getAllRouteSliceApi';
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import { useGetUserQuery } from '../../../../host/src/app/redux/apiSlices/userApiSlice';
+import { useGetUserQuery } from '@mfe-nx/redux-navbar';
 
 export const NavBar = () => {
   const { t } = useTranslationNavBar();
   const navigate = useNavigate();
 
   const { data } = useGetUserQuery();
-
-  // const { data: routes, refetch: refetchAllRoutes } = useGetAllRoutesQuery();
-  // console.log('=>(NavBar.tsx:18) routes', routes);
 
   const items: MenuItem[] = useMemo(
     () => [

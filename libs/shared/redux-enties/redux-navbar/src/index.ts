@@ -1,1 +1,1 @@
-export * from './lib/redux-navbar';
+export { useGetUserQuery, userSliceApi } from './lib/apiSlices/userApiSlice';
