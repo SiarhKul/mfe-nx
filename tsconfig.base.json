@@ -18,6 +18,9 @@
     "paths": {
       "@mfe-nx/internalisation": ["libs/shared/internalisation/src/index.ts"],
       "@mfe-nx/redux": ["libs/shared/redux/src/index.ts"],
+      "@mfe-nx/redux-about": [
+        "libs/shared/redux-enties/redux-about/src/index.ts"
+      ],
       "@mfe-nx/redux-admin": [
         "libs/shared/redux-enties/redux-admin/src/index.ts"
       ],

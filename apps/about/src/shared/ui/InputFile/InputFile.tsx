@@ -1,11 +1,19 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
-const InputFile = () => {
-  const [file, setFile] = useState();
-  console.log('=>(InputFile.tsx:5) file', file);
+interface IProps {
+  addFile: (files: FileList) => void;
+}
 
-  function handleChange(event: any) {
-    setFile(event.target.files[0]);
+const InputFile = ({ addFile }: IProps) => {
+  const [file, setFile] = useState<FileList>();
+
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    if (event.target.files && event.target.files.length > 0) {
+      const addedFiles = event.target.files;
+
+      addFile(addedFiles);
+      setFile(addedFiles);
+    }
   }
 
   return (
