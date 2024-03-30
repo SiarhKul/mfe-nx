@@ -7,7 +7,7 @@ type TUseAddAttachmentMutation = ReturnType<typeof useAddAttachmentMutation>;
 type TAddAttachment = TUseAddAttachmentMutation['0'];
 
 interface IProps {
-  addAttachment: TAddAttachment;
+  addAttachment: any;
 }
 
 const FileLoader = ({ addAttachment }: IProps) => {
@@ -34,7 +34,7 @@ const FileLoader = ({ addAttachment }: IProps) => {
       {/*<div className="preview">*/}
       {/*  <p>No files currently selected for upload</p>*/}
       {/*</div>*/}
-      <Button className="self-start" type="submit" label="Submit" />
+      {/*<Button className="self-start" type="submit" label="Submit" />*/}
     </form>
   );
 };
