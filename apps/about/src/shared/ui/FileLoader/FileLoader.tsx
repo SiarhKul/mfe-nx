@@ -15,11 +15,6 @@ const FileLoader = ({ addAttachment }: IProps) => {
 
   function handleInputFileChange(files: FileList) {
     const downloadableFile = files[0];
-    // const attachemt: IAttachment = {
-    //   fileName: file.name,
-    //   sizeBytes: file.size,
-    //   contentType: file.type,
-    // };
     addAttachment(downloadableFile);
     setFileList(files);
   }

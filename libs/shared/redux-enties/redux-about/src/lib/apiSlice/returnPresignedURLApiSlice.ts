@@ -30,7 +30,7 @@ const axiosBaseQuery = ({ baseUrl }: TBaseAxiosQuery = { baseUrl: '' }):
     };
 
     try {
-      const result = await axios({
+      const presignedResponse = await axios({
         url: baseUrl + url,
         method,
         data:attachmemt,
@@ -49,15 +49,14 @@ const axiosBaseQuery = ({ baseUrl }: TBaseAxiosQuery = { baseUrl: '' }):
 
 
       await axios({
-        url: `${baseUrl}${url}/${result.data.id}`,
+        url: `${baseUrl}${url}/${presignedResponse.data.id}`,
         method: 'PUT',
       })
 
 
-      console.log("=>(returnPresignedURLApiSlice.ts:27) data", result);
-      // console.log("=>(returnPresignedURLApiSlice.ts:45) s3response", s3response);
+      console.log("PRESIGH_RESPONSE", presignedResponse);
 
-      return { data: result.data };
+      return { data: presignedResponse.data };
     } catch (axiosError) {
       const err = axiosError as AxiosError;
       return {
