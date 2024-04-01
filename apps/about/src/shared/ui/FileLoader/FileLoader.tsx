@@ -14,13 +14,13 @@ const FileLoader = ({ addAttachment }: IProps) => {
   const [fileList, setFileList] = useState<FileList>();
 
   function handleInputFileChange(files: FileList) {
-    const file = files[0];
-    const attachemt: IAttachment = {
-      fileName: file.name,
-      sizeBytes: file.size,
-      contentType: file.type,
-    };
-    addAttachment(attachemt);
+    const downloadableFile = files[0];
+    // const attachemt: IAttachment = {
+    //   fileName: file.name,
+    //   sizeBytes: file.size,
+    //   contentType: file.type,
+    // };
+    addAttachment(downloadableFile);
     setFileList(files);
   }
 
