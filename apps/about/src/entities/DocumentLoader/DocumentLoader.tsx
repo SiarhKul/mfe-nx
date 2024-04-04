@@ -1,34 +1,21 @@
 import { FileList, FileLoader } from '../../shared/ui';
 import {
   useGetAttachmentsQuery,
-  useReturnPresignedURLMutation
+  useReturnPresignedURLMutation,
 } from '@mfe-nx/redux-about';
 import { USER_ID } from '../../shared/constants/ids';
-import { Suspense } from 'react';
 
 const DocumentLoader = () => {
-  // const [addAttachment, addAttachmentReturn] = useAddAttachmentMutation();
-
-
   const [addAttachment, addAttachmentReturn1] = useReturnPresignedURLMutation();
-  console.log("=>(DocumentLoader.tsx:10) addAttachmentReturn1", addAttachmentReturn1);
-  const {
-    data: attachments,
-    isFetching,
-    isLoading,
-    isSuccess
-  }= useGetAttachmentsQuery(USER_ID,{skip: false});
-
-  console.log('ffffffffffffffffff=>', useGetAttachmentsQuery(USER_ID,{skip: false}));
-  console.log("=>(DocumentLoader.tsx:15) attachments", attachments);
+  const { data: attachments, isSuccess } = useGetAttachmentsQuery(USER_ID, {
+    skip: false,
+  });
 
   return (
     <div className="mt-4">
       <FileLoader addAttachment={addAttachment} />
 
-      {isSuccess &&  <FileList attachments={attachments}/>}
-
-
+      {isSuccess && <FileList attachments={attachments} />}
     </div>
   );
 };
