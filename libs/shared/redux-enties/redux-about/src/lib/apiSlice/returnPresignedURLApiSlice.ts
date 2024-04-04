@@ -54,7 +54,7 @@ const axiosBaseQuery = ({ baseUrl }: TBaseAxiosQuery = { baseUrl: '' }):
       })
 
 
-      console.log("PRESIGH_RESPONSE", presignedResponse);
+      // console.log("PRESIGH_RESPONSE", presignedResponse);
 
       return { data: presignedResponse.data };
     } catch (axiosError) {

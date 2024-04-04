@@ -67,6 +67,7 @@ export default function FormikDoc() {
   //todo Add prefix
   return (
     <div className="p-4">
+      <div className="border border-sky-500">111111</div>
       <form onSubmit={formik.handleSubmit}>
         <div className="flex flex-col gap-2">
           <div>
@@ -80,7 +81,7 @@ export default function FormikDoc() {
               suggestions={departureCity}
               completeMethod={searchDepartureCity}
               className={classNames({
-                'p-invalid': isFormFieldInvalid('departureCity'),
+                'p-invalid': isFormFieldInvalid('departureCity')
               })}
               onChange={(e) => {
                 _isObject(e.value)
@@ -101,7 +102,7 @@ export default function FormikDoc() {
               suggestions={destinationCity}
               completeMethod={searchDestinationCity}
               className={classNames({
-                'p-invalid': isFormFieldInvalid('destinationCity'),
+                'p-invalid': isFormFieldInvalid('destinationCity')
               })}
               onChange={(e) => {
                 _isObject(e.value)

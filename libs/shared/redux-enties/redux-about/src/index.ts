@@ -3,6 +3,7 @@ export {
   useAddAttachmentMutation
 } from './lib/apiSlice/loadAttachmentApiSlice';
 export type { IAttachment } from './lib/apiSlice/loadAttachmentApiSlice';
-
+export type { IUploadedAttachmentResponse } from './lib/apiSlice/getAttachmentsApiSlice';
 export { loadAttachmentS3ApiSlice, useAddAttachmentS3Mutation } from './lib/apiSlice/loadAttachmentS3ApiSlice';
 export { returnPresignedURLApiSlice, useReturnPresignedURLMutation } from './lib/apiSlice/returnPresignedURLApiSlice';
+export {getAttachmentsApiSlice,useGetAttachmentsQuery} from './lib/apiSlice/getAttachmentsApiSlice'
