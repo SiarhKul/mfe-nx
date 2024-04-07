@@ -1,4 +1,8 @@
-import { IUploadedAttachmentResponse } from '@mfe-nx/redux-about';
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import {
+  IUploadedAttachmentResponse,
+  useDeleteAttachmentMutation,
+} from '@mfe-nx/redux-about';
 import { Button } from 'primereact/button';
 import React from 'react';
 
@@ -7,14 +11,20 @@ interface IProps {
 }
 
 const FileList = ({ attachments }: IProps) => {
+  const [deleteAttachment, deletAttachmentReturn] =
+    useDeleteAttachmentMutation();
   const handleDelete = (attachment: IUploadedAttachmentResponse) => {
+    deleteAttachment(attachment.id);
     console.log('attachment', attachment);
   };
 
   return (
     <div className="flex flex-col items-start">
       {attachments.map((att) => (
-        <div className="flex gap-4 p-3 items-center  border border-zinc-400 border-solid">
+        <div
+          key={att.id}
+          className="flex gap-4 p-3 items-center  border border-zinc-400 border-solid"
+        >
           <span>{att.fileName}</span>
           <span>-</span>
           <span>{att.size} Kb</span>

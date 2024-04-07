@@ -19,7 +19,15 @@ import {
   getAllRouteSliceApi,
   routerApiSlice,
 } from '@mfe-nx/redux-admin';
-import { getAttachmentsApiSlice, loadAttachmentApiSlice, returnPresignedURLApiSlice } from '@mfe-nx/redux-about';
+import {
+  deleteAttachmentApiSlice,
+  deleteAttachmentMiddleware,
+  deleteAttachmentPath,
+  deleteAttachmentReducer,
+  getAttachmentsApiSlice,
+  loadAttachmentApiSlice,
+  returnPresignedURLApiSlice,
+} from '@mfe-nx/redux-about';
 
 const dynamicMiddleware = createDynamicMiddleware();
 
@@ -67,8 +75,10 @@ export const configStore = () => {
     [getAllRouteSliceApi.reducerPath]: getAllRouteSliceApi.reducer,
     [routerApiSlice.reducerPath]: routerApiSlice.reducer,
     [loadAttachmentApiSlice.reducerPath]: loadAttachmentApiSlice.reducer,
-    [returnPresignedURLApiSlice.reducerPath]: returnPresignedURLApiSlice.reducer,
-  [getAttachmentsApiSlice.reducerPath]: getAttachmentsApiSlice.reducer,
+    [returnPresignedURLApiSlice.reducerPath]:
+      returnPresignedURLApiSlice.reducer,
+    [getAttachmentsApiSlice.reducerPath]: getAttachmentsApiSlice.reducer,
+    [deleteAttachmentApiSlice.reducerPath]: deleteAttachmentApiSlice.reducer,
   });
 
   const config = {
@@ -86,7 +96,8 @@ export const configStore = () => {
           routerApiSlice.middleware,
           loadAttachmentApiSlice.middleware,
           returnPresignedURLApiSlice.middleware,
-          getAttachmentsApiSlice.middleware
+          getAttachmentsApiSlice.middleware,
+          deleteAttachmentApiSlice.middleware,
         ])
         .prepend(dynamicMiddleware.middleware),
   };
