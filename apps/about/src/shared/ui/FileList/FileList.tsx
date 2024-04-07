@@ -8,13 +8,16 @@ import React from 'react';
 
 interface IProps {
   attachments: IUploadedAttachmentResponse[];
+  onDeleteAttachment: () => Promise<void>;
 }
 
-const FileList = ({ attachments }: IProps) => {
+const FileList = ({ attachments, onDeleteAttachment }: IProps) => {
   const [deleteAttachment, deletAttachmentReturn] =
     useDeleteAttachmentMutation();
-  const handleDelete = (attachment: IUploadedAttachmentResponse) => {
-    deleteAttachment(attachment.id);
+
+  const handleDelete = async (attachment: IUploadedAttachmentResponse) => {
+    await deleteAttachment(attachment.id);
+    await onDeleteAttachment();
     console.log('attachment', attachment);
   };
 
