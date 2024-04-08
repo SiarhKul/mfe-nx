@@ -18,10 +18,10 @@ const DocumentLoader = () => {
     skip: !addAttachmentReturn.isSuccess,
   });
 
-  // console.log(
-  //   '=>(DocumentLoader.tsx:10) addAttachmentReturn1',
-  //   addAttachmentReturn
-  // );
+  console.log(
+    '=>(DocumentLoader.tsx:10) addAttachmentReturn1',
+    addAttachmentReturn
+  );
 
   if (addAttachmentReturn.isError || isError) {
     return <h1>Network error</h1>;

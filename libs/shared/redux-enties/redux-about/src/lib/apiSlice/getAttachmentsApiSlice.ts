@@ -76,7 +76,7 @@ const mimeTypes = {
   '.7z': 'application/x-7z-compressed',
 };
 
-type TmimeTypes = typeof mimeTypes;
+type TMimeTypes = typeof mimeTypes;
 enum Enum {
   PENDING,
   UPLOADED,
@@ -87,7 +87,7 @@ export interface IUploadedAttachmentResponse {
   id: string;
   size: number;
   status: Enum;
-  type: TmimeTypes;
+  type: TMimeTypes;
   uploadedTimestamp: string;
   userId: string;
 }
@@ -99,6 +99,7 @@ export const getAttachmentsApiSlice = createApi({
   endpoints: (build) => ({
     getAttachments: build.query<IUploadedAttachmentResponse[], string>({
       query: (userId) => ({ url: `api/attachments/${userId}` }),
+      providesTags: ['GetAttachments'],
     }),
   }),
 });

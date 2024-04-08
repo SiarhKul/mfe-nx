@@ -1,6 +1,5 @@
 import InputFile from '../InputFile/InputFile';
-import { Button } from 'primereact/button';
-import { IAttachment, useAddAttachmentMutation } from '@mfe-nx/redux-about';
+import { useAddAttachmentMutation } from '@mfe-nx/redux-about';
 import { useState } from 'react';
 
 type TUseAddAttachmentMutation = ReturnType<typeof useAddAttachmentMutation>;
@@ -11,12 +10,14 @@ interface IProps {
 }
 
 const FileLoader = ({ addAttachment }: IProps) => {
-  const [fileList, setFileList] = useState<FileList>();
+  const [_, setFileList] = useState<FileList>();
 
-  function handleInputFileChange(files: FileList) {
-    const downloadableFile = files[0];
-    addAttachment(downloadableFile);
+  async function handleInputFileChange(files: FileList) {
     setFileList(files);
+
+    for (const file of Array.from(files)) {
+      await addAttachment(file);
+    }
   }
 
   return (

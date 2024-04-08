@@ -18,7 +18,6 @@ const FileList = ({ attachments, onDeleteAttachment }: IProps) => {
   const handleDelete = async (attachment: IUploadedAttachmentResponse) => {
     await deleteAttachment(attachment.id);
     await onDeleteAttachment();
-    console.log('attachment', attachment);
   };
 
   return (
