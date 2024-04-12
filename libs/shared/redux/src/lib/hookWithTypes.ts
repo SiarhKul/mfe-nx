@@ -1,6 +1,8 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
-import { TRootState } from '../../app';
+import type { TConfigStoreType } from './configureStore';
+
+type TRootState = TConfigStoreType['store'];
 
 export type AppThunkDispatch = ThunkDispatch<TRootState, unknown, AnyAction>;
 

@@ -107,3 +107,5 @@ export const configStore = () => {
 
   return { store, persistor, reducerManager };
 };
+
+export type TConfigStoreType = ReturnType<typeof configStore>;
