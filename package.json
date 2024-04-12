@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "run-all-apps": "nx serve host --devRemotes=cart,shop,about,navbar,admin",
-    "run-all-tests": "nx run-many --target=test --all"
+    "test": "nx run-many --target=test --all"
   },
   "private": true,
   "devDependencies": {
