@@ -1,6 +1,7 @@
 name: Deploy project
 on:
   push:
+  workflow_dispatch: # Allows to run the workflow manually
     branches:
       - main
 jobs:
@@ -18,6 +19,7 @@ jobs:
       - name: Run tests
         run : npm test
   deploy:
+    needs: test
     runs-on: ubuntu-latest
     steps:
     - name: Get the code
