@@ -5,7 +5,9 @@
   "scripts": {
     "run-all-apps": "nx serve host --devRemotes=cart,shop,about,navbar,admin",
     "test": "nx run-many --target=test --all",
-    "build": "nx run-many --target=build --all"
+    "build": "nx run-many --target=build --all",
+    "lint": "nx run-many --target=lint --all",
+    "lint-fix": "nx run-many --target=lint --fix --all"
   },
   "private": true,
   "devDependencies": {
