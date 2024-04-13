@@ -32,7 +32,7 @@ jobs:
       - name: Run linter
         run: npm run lint
   deploy:
-    needs: test
+    needs: [test, lint]
     runs-on: ubuntu-latest
     steps:
     - name: Get the code
