@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - '.github/workflows/**'
+#    paths-ignore:
+#      - '.github/workflows/**'
   workflow_dispatch: # Allows to run the workflow manually
     branches:
       - main
@@ -29,8 +29,11 @@ jobs:
         run: npm test
       - name: Run linter
         run: npm run lint
+
   build:
     runs-on: ubuntu-latest
+    outputs:
+      script-output: ${{ steps.publish.outputs.script-output}}
     steps:
       - name: Get the code
         uses: actions/checkout@v3
@@ -42,11 +45,16 @@ jobs:
         run: npm ci
       - name: Build project
         run: npm run build
+      - name: Publish JS file
+        id: publish
+#        run:  find dist/apps/about/*.js -type f -execdir echo 'script-output={}' >> $GITHUB_OUTPUT ';'
+        run:  find dist/apps/about/*.js -type f -execdir echo '::set-output name=script-file::{}' ';'
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: dist-files
-          path: dist
+#          path: dist
+
   deploy:
     needs: [ test-lint ,build ]
     runs-on: ubuntu-latest
@@ -58,6 +66,8 @@ jobs:
           path: dist
       - name: Output content of dist folder
         run: ls
+      - name: Output files
+        run: echo ${{ needs.build.outputs.script-output }}
       - name: Deploy
         run: |
           echo "Deploying the project..."
