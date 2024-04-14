@@ -47,8 +47,9 @@ jobs:
         run: npm run build
       - name: Publish JS file
         id: publish
+        run: find dist/apps/about/remoteEntry.js -type f -execdir echo 'script-output={}' >> $GITHUB_OUTPUT ';'
 #        run:  find dist/apps/about/*.js -type f -execdir echo 'script-output={}' >> $GITHUB_OUTPUT ';'
-        run:  find dist/apps/about/*.js -type f -execdir echo '::set-output name=script-file::{}' ';'
+#        run:  find dist/apps/about/*.js -type f -execdir echo '::set-output name=script-file::{}' ';'
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
@@ -63,7 +64,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: dist-files
-          path: dist
+#          path: dist
       - name: Output content of dist folder
         run: ls
       - name: Output files
