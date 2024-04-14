@@ -51,6 +51,13 @@ jobs:
     needs: [ test-lint ,build ]
     runs-on: ubuntu-latest
     steps:
+      - name: Get build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dist-files
+          path: dist
+      - name: Output content of dist folder
+        run: ls
       - name: Deploy
         run: |
           echo "Deploying the project..."
