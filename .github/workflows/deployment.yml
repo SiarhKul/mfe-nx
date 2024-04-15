@@ -14,10 +14,9 @@ on:
     branches:
       - main
 env:
-  NX_BASE_URL_API:
-    'http://localhost:8080/api'
-  NX_API_JSON_PLACEHOLDER:
-    'https://jsonplaceholder.typicode.com'
+  NX_BASE_URL_API: 'http://localhost:8080/api'
+  NX_API_JSON_PLACEHOLDER: 'https://jsonplaceholder.typicode.com'
+  NX_USER_SECRET: ${{secrets.NX_USER_SECRET}}
 jobs:
   test-lint:
     env:
@@ -43,7 +42,9 @@ jobs:
       - name: Run linter
         run: npm run lint
       - name: Output ENV variables
-        run: echo "ENVs,${{env}}"
+        run: |
+              echo "ENVs,${{env}}"
+              echo "SECRET,${{secrets.NX_USER_SECRET}}"
   build:
     needs: [ test-lint ]
     runs-on: ubuntu-latest
