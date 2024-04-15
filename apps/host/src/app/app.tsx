@@ -15,6 +15,7 @@ reduxManager.incrementCounter();
 const counter = reduxManager.getCounter();
 console.log('C1', counter);*/
 
+console.log('ENV', process.env);
 export function App() {
   return (
     <React.Suspense fallback={null}>
