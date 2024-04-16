@@ -16,6 +16,7 @@ on:
 env:
   NX_BASE_URL_API: 'http://localhost:8080/api'
   NX_API_JSON_PLACEHOLDER: 'https://jsonplaceholder.typicode.com'
+  NX_TASK_TARGET_CONFIGURATION: "dev"
 jobs:
   test-lint:
     environment: Testing
