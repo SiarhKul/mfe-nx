@@ -16,12 +16,12 @@ on:
 env:
   NX_BASE_URL_API: 'http://localhost:8080/api'
   NX_API_JSON_PLACEHOLDER: 'https://jsonplaceholder.typicode.com'
-  NX_USER_SECRET: ${{secrets.NX_USER_SECRET}}
 jobs:
   test-lint:
+    environment: Testing
     env:
-      NX_TASK_TARGET_CONFIGURATION:
-        "development"
+      NX_TASK_TARGET_CONFIGURATION: "development"
+      NX_USER_SECRET: ${{secrets.NX_USER_SECRET}}
     runs-on: ubuntu-latest
     steps:
       - name: Get the code
