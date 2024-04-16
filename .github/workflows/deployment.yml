@@ -20,7 +20,7 @@ jobs:
   test-lint:
     environment: Testing
     env:
-      NX_TASK_TARGET_CONFIGURATION: "development"
+      NX_TASK_TARGET_CONFIGURATION: "testing"
       NX_USER_SECRET: ${{secrets.NX_USER_SECRET}}
     runs-on: ubuntu-latest
     steps:
