@@ -77,11 +77,11 @@ jobs:
         with:
           name: dist-files
           path: dist
-      - name: Upload test coverage
+      - name: Upload test report
         uses: actions/upload-artifact@v3
         with:
-          name: test-coverage
-          path: coverage
+          name: test-report
+          path: test-report.json
 
   deploy:
     needs: [ test-lint ,build ]
@@ -94,8 +94,8 @@ jobs:
       - name: Get Test coverage
         uses: actions/download-artifact@v3
         with:
-          name: test-coverage
-          path: coverage
+          name: test-report
+          path: test-report.json
       - name: Output content of dist folder
         run: ls
       - name: Output files

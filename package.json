@@ -8,7 +8,7 @@
     "build": "nx run-many --target=build --all",
     "lint": "nx run-many --target=lint --all",
     "lint-fix": "nx run-many --target=lint --fix --all",
-    "test:coverage": "nx run-many --target=test --all --codeCoverage"
+    "test:coverage": "nx run-many --target=test --all --codeCoverage --outputFile=test-report.json --json"
   },
   "private": true,
   "devDependencies": {
