@@ -95,7 +95,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: test-coverage
-      #          path: dist
+          path: coverage
       - name: Output content of dist folder
         run: ls
       - name: Output files
