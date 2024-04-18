@@ -16,12 +16,12 @@ on:
 env:
   NX_BASE_URL_API: 'http://localhost:8080/api'
   NX_API_JSON_PLACEHOLDER: 'https://jsonplaceholder.typicode.com'
-  NX_TASK_TARGET_CONFIGURATION: "dev"
+  NX_TASK_TARGET_CONFIGURATION: 'dev'
 jobs:
   test-lint:
     environment: Testing
     env:
-      NX_TASK_TARGET_CONFIGURATION: "testing"
+      NX_TASK_TARGET_CONFIGURATION: 'testing'
       NX_USER_SECRET: ${{secrets.NX_USER_SECRET}}
     runs-on: ubuntu-latest
     steps:
@@ -40,14 +40,24 @@ jobs:
         run: npm ci
       - name: Run tests
         run: npm run test:coverage
+      - name: Upload test report
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-report
+          path: test-report.json
+      - name: Upload test-coverage
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-coverage
+          path: coverage
       - name: Run linter
         run: npm run lint
       - name: Output ENV variables
         run: |
-              echo "ENVs,${{env}}"
-              echo "SECRET,${{secrets.NX_USER_SECRET}}"
+          echo "ENVs,${{env}}"
+          echo "SECRET,${{secrets.NX_USER_SECRET}}"
   build:
-    needs: [ test-lint ]
+    needs: [test-lint]
     runs-on: ubuntu-latest
     outputs:
       script-output: ${{ steps.publish.outputs.script-output}}
@@ -77,25 +87,25 @@ jobs:
         with:
           name: dist-files
           path: dist
-      - name: Upload test report
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-report
-          path: test-report.json
 
   deploy:
-    needs: [ test-lint ,build ]
+    needs: [test-lint, build]
     runs-on: ubuntu-latest
     steps:
       - name: Get build artifact
         uses: actions/download-artifact@v3
         with:
           name: dist-files
-      - name: Get Test coverage
+      - name: Get Test report
         uses: actions/download-artifact@v3
         with:
           name: test-report
           path: test-report.json
+      - name: Get Test coverage
+        uses: actions/download-artifact@v3
+        with:
+          name: test-coverage
+
       - name: Output content of dist folder
         run: ls
       - name: Output files
