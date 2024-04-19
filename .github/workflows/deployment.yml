@@ -42,7 +42,7 @@ jobs:
         id: test-step-id
         run: npm run test:coverage
       - name: Upload test report
-        if: steps.test-step-id.outcame == 'failure'
+        if: failure() && steps.test-step-id.outcame == 'failure'
         uses: actions/upload-artifact@v3
         with:
           name: test-report
