@@ -38,12 +38,17 @@ jobs:
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm ci
-      - name: TESTS CODE
+      - name: * Test code
         id: test-step-id
         run: npm run test:coverage
-      - name: UPLOAD TEST REPORT
-        if: failure()
+      - name: * Upload test report
+        if: failure() && steps.test-step-id.outcame == 'failure'
         uses: actions/upload-artifact@v3
+        with:
+          name: test-report
+          path: test-report.json
+      - name: * Get test coverage
+        uses: actions/download-artifact@v3
         with:
           name: test-report
           path: test-report.json
@@ -98,11 +103,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: dist-files
-      - name: Get Test report
-        uses: actions/download-artifact@v3
-        with:
-          name: test-report
-          path: test-report.json
       - name: Get Test coverage
         uses: actions/download-artifact@v3
         with:
