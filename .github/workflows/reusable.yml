@@ -1,12 +1,9 @@
-name: Reusable deployment
-
+name: Deploy reusable workflow project
 on: workflow_call
-
 jobs:
-  deploy:
+  change-me:
     runs-on: ubuntu-latest
     steps:
-      - name: Output information
+      - name: Output ENV variables
         run: |
-          echo "Output github object..."
-         echo "${{toJson(github)}}"
+          echo "github objece,${{github}}"
