@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - main
-  #    paths-ignore:
-  #      - '.github/workflows/**'
+    paths-ignore:
+      - '.github/workflows/**'
   workflow_dispatch: # Allows to run the workflow manually
     branches:
       - main
