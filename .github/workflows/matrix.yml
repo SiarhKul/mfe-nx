@@ -1,4 +1,4 @@
-name: Deploy project
+name: Matrix
 on:
   workflow_dispatch: # Allows to run the workflow manually
     branches:
@@ -7,9 +7,9 @@ jobs:
   build:
     continue-on-error: true
     strategy:
-    matrix:
-      node-version: [18, 16, 14]
-      os: [ubuntu-latest, windows-latest, macos-latest]
+      matrix:
+        node-version: [18, 16, 14]
+        os: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Get the code
