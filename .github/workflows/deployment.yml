@@ -62,7 +62,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: test-coverage
-            path: coverage
+          path: coverage
       - name: Run linter
         run: npm run lint
       - name: Output ENV variables
