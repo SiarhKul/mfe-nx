@@ -1,22 +1,22 @@
-name: Matrix
+name: Deploy project
 on:
-  workflow_dispatch:
+  workflow_dispatch: # Allows to run the workflow manually
     branches:
       - main
 jobs:
   build:
-    continue-on-error: true
-    strategy:
-      matrix:
-        node-version: [14, 16, 18]
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+    matrix:
+      node-version: [18, 16, 14]
+      os: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Get the code
         uses: actions/checkout@v3
-      - name: Install NodeJs
+      - name: Install No deJs
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: npm ci
       - name: Build project
         run: npm run build
