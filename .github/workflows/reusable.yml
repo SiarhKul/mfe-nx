@@ -1,9 +1,22 @@
 name: Deploy reusable workflow project
-on: workflow_call
+on:
+  workflow_call:
+    artifact-name:
+      description: 'The name of the artifact to download'
+      required: true
+      default: 'dist'
+      type: string
 jobs:
   change-me:
     runs-on: ubuntu-latest
     steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ inputs.artifact-name }}
+          path: dist
+      - name: List files
+        run: ls -l dist
       - name: Output ENV variables
         run: |
           echo "github objece,${{github}}"
