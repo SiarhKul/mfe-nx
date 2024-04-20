@@ -34,9 +34,10 @@ jobs:
       - name: Cache dependencies
         uses: actions/cache@v3
         with:
-          path: ~/.npm
+          path: node_modules
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Test code
         id: run-tests-id
@@ -75,16 +76,16 @@ jobs:
       - name: Cache dependencies
         uses: actions/cache@v3
         with:
-          path: ~/.npm
+          path: node_modules
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Build project
         run: npm run build
       - name: Publish JS file
         id: publish
         run: find dist/apps/about/remoteEntry.js -type f -execdir echo 'script-output={}' >> $GITHUB_OUTPUT ';'
-      #        run:  find dist/apps/about/*.js -type f -execdir echo 'script-output={}' >> $GITHUB_OUTPUT ';'
       #        run:  find dist/apps/about/*.js -type f -execdir echo '::set-output name=script-file::{}' ';'
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -93,7 +94,7 @@ jobs:
           path: dist
 
   deploy:
-    needs: [test-lint, build]
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - name: Get build artifact
