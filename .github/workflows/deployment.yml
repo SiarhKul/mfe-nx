@@ -121,7 +121,7 @@ jobs:
           echo "Done!"
   report:
     if: failure()
-    needs: [deploy]
+    needs: [deploy, test-lint]
     runs-on: ubuntu-latest
     steps:
       - name: Create report
