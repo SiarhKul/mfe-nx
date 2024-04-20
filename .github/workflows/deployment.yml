@@ -48,6 +48,7 @@ jobs:
           name: test-report
           path: test-report.json
       - name: Download test report
+        if: failure() && steps.run-tests-id.outcome == 'failure'
         uses: actions/download-artifact@v3
         with:
           name: test-report
