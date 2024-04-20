@@ -53,16 +53,6 @@ jobs:
         with:
           name: test-report
           path: test-report.json
-      - name: Upload test-coverage
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-coverage
-          path: coverage
-      - name: Download test-coverage
-        uses: actions/download-artifact@v3
-        with:
-          name: test-coverage
-          path: coverage
       - name: Run linter
         run: npm run lint
       - name: Output ENV variables
@@ -121,7 +111,7 @@ jobs:
           echo "Done!"
   report:
     if: failure()
-    needs: [deploy, test-lint]
+    needs: [deploy]
     runs-on: ubuntu-latest
     steps:
       - name: Create report
