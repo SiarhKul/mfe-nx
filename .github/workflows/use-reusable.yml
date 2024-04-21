@@ -67,3 +67,5 @@ jobs:
     uses: ./.github/workflows/reusable.yml
     with:
       artifact-name: 'build-artifact-mf'
+    secrets:
+      my_secret: ${{ secrets.NX_USER_SECRET }}

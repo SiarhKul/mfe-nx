@@ -7,6 +7,11 @@ on:
         required: true
         default: 'dist'
         type: string
+    secrets:
+      my_secret:
+      description: 'A secret
+      required: true
+
 jobs:
   change-me:
     runs-on: ubuntu-latest
@@ -20,4 +25,5 @@ jobs:
         run: ls -l dist
       - name: Output ENV variables
         run: |
-          echo "github objece,${{github}}"
+          echo "secret,${{ secrets.my_secret }}"
+          echo "github objece,${{ toJson( github)}}"
