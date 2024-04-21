@@ -9,7 +9,6 @@ on:
         type: string
     secrets:
       my_secret:
-        description: 'A secret
         required: true
 
 jobs:
