@@ -11,8 +11,9 @@ on:
         default: 'dist'
         type: string
     outputs:
-      result: ${{ steps.change-me.outputs.outcome }}
-      description: 'The output of the reuseable workflow'
+      result:
+        description: 'The output of the reuseable workflow'
+        value: ${{ jobs.change-me.outputs.outcome }}
 
 jobs:
   change-me:
