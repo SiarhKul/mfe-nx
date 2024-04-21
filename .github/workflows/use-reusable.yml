@@ -5,6 +5,8 @@ on:
       - main
 jobs:
   test-lint:
+    container:
+      image: node:18
     runs-on: ubuntu-latest
     steps:
       - name: Get the code
