@@ -62,6 +62,7 @@ jobs:
         with:
           name: build-artifact-mf
           path: dist
+
   deploy:
     needs: [build]
     uses: ./.github/workflows/reusable.yml
@@ -69,3 +70,10 @@ jobs:
       artifact-name: 'build-artifact-mf'
     secrets:
       my_secret: ${{ secrets.NX_USER_SECRET }}
+
+  print-deploy-result:
+    needs: [deploy]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print deploy result
+        run: echo "Deploy result:${{needs.deploy.outputs.result}}"

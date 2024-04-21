@@ -1,19 +1,24 @@
 name: Deploy reusable workflow project
 on:
   workflow_call:
+    secrets:
+      my_secret:
+        required: true
     inputs:
       artifact-name:
         description: 'The name of the artifact to download'
         required: true
         default: 'dist'
         type: string
-    secrets:
-      my_secret:
-        required: true
+    outputs:
+      result: ${{ steps.change-me.outputs.outcome }}
+      description: 'The output of the reuseable workflow'
 
 jobs:
   change-me:
     runs-on: ubuntu-latest
+    outputs:
+      outcome: ${{steps.set-result-id.outputs.step-output}}
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v4
@@ -26,3 +31,7 @@ jobs:
         run: |
           echo "secret,${{ secrets.my_secret }}"
           echo "github objece,${{ toJson( github)}}"
+      - name: Set result output
+        id: set-result-id
+        run: |
+          echo "step-output=success" >> $GITHUB_OUTPUT
