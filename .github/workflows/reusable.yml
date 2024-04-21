@@ -13,14 +13,13 @@ on:
     outputs:
       result:
         description: 'The output of the reuseable workflow'
-        value: ${{ steps.set-result-id.outputs.step-output }}
-        #value: ${{ jobs.change-me.outputs.outcome }}
+        value: ${{ jobs.change-me.outputs.outcome }}
 
 jobs:
   change-me:
     runs-on: ubuntu-latest
-    #outputs:
-    #outcome: ${{steps.set-result-id.outputs.step-output}}
+    outputs:
+      outcome: ${{steps.set-result-id.outputs.step-output}}
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v4
