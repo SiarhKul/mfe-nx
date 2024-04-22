@@ -1,4 +1,4 @@
-name: Deploy reusable workflow project
+name: Use reusable workflow
 on:
   push:
     branches:

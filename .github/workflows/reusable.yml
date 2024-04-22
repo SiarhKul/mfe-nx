@@ -1,4 +1,4 @@
-name: Deploy reusable workflow project
+name: Reusable workflow
 on:
   workflow_call:
     secrets:
