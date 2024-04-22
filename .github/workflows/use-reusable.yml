@@ -5,6 +5,7 @@ on:
       - main
 jobs:
   test-lint:
+    environment: Testing
     container:
       image: node:18
     runs-on: ubuntu-latest
