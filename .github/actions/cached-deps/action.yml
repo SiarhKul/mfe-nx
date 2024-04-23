@@ -25,5 +25,7 @@ runs:
       shell: bash
       run: |
         npm ci
-        echo "cache='her'" >> $GITHUB_OUTPUT
-        echo "step-output=success" >> $GITHUB_OUTPUT
+#        echo "cache='her'" >> $GITHUB_OUTPUT
+#        echo "cache=${{ steps.cache.outputs.cache-hit }}" >> $GITHUB_OUTPUT
+#        echo "step-output=success" >> $GITHUB_OUTPUT
+        echo "cache=${{ inputs.caching  }}" >> $GITHUB_OUTPUT
