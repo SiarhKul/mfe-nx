@@ -25,7 +25,7 @@ jobs:
         id: cache-dep-id
         uses: ./.github/actions/cached-deps
       - name: Output information
-        run: echo "${{steps.cache-dep-id.oupusts.used-cache}}"
+        run: echo "Output from custom action ${{steps.cache-dep-id.oupusts.used-cache}}"
       - name: Test code
         id: run-tests
         run: npm run test
