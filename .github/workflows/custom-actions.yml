@@ -13,6 +13,8 @@ jobs:
         uses: ./.github/actions/cached-deps
         with:
           caching: 'false'
+      - name: Output information
+        run: echo "Output from custom action ${{toJson( steps.cache-dep-id)}}"
       - name: Lint code
         run: npm run lint
 
@@ -24,8 +26,7 @@ jobs:
       - name: Load & cache dependencies
         id: cache-dep-id
         uses: ./.github/actions/cached-deps
-      - name: Output information
-        run: echo "Output from custom action ${{toJson( steps.cache-dep-id)}}"
+
       - name: Test code
         id: run-tests
         run: npm run test
