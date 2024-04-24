@@ -25,4 +25,4 @@ runs:
       shell: bash
       run: |
         npm ci
-        echo "cache=${{ inputs.caching  }}" >> $GITHUB_OUTPUT
+        echo "step-cache=success" >> $GITHUB_OUTPUT
