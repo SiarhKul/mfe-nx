@@ -10,11 +10,12 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: Load & cache dependencies
+        id: cache-dep-id
         uses: ./.github/actions/cached-deps
         with:
           caching: 'false'
       - name: Output information
-        run: echo "Output from custom action ${{toJson( steps.cache-dep-id)}}"
+        run: echo "Output from custom action ${{toJson(steps.cache-dep-id)}}"
       - name: Lint code
         run: npm run lint
 
@@ -24,9 +25,7 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: Load & cache dependencies
-        id: cache-dep-id
         uses: ./.github/actions/cached-deps
-
       - name: Test code
         id: run-tests
         run: npm run test
