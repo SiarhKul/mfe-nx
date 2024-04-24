@@ -26,4 +26,3 @@ runs:
       run: |
         npm ci
         echo "cache-custom ='${{inputs.caching}}'">>$GITHUB_OUTPUT
-        echo ${{toJson(steps)}}
