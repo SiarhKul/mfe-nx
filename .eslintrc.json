@@ -1,6 +1,6 @@
 {
   "root": true,
-  "ignorePatterns": ["**/*", "!.github/actions/deploy-s3-JS/main.js"],
+  "ignorePatterns": [".github/actions/deploy-s3-JS/main.js"],
   "plugins": ["@nx"],
   "overrides": [
     {
