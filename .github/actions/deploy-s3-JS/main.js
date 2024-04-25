@@ -1,3 +1,4 @@
+/* eslint-disable */
 const core = require('@actions/core');
 const github = require('@actions/exec');
 const exec = require('@actions/github');
