@@ -72,5 +72,7 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
+      - name: Load & cache dependencies
+        uses: ./.github/actions/cached-deps
       - name: Run custom JS action
         uses: ./.github/actions/deploy-s3-JS
