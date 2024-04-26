@@ -5,6 +5,7 @@ on:
       - main
     paths-ignore:
       - '.github/workflows/**'
+      - '.github/actions/**'
 jobs:
   test-lint:
     environment: Testing
