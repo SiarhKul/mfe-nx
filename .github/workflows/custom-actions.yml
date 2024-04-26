@@ -64,7 +64,7 @@ jobs:
           name: dist-files
           path: ./dist
       - name: Run custom JS action
-        id: deploy-id
+        id: deploy
         env:
           AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
           AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
@@ -75,4 +75,4 @@ jobs:
           dist-folder: ./dist
       - name: Output URL
         run: |
-          echo "Live URL: ${{steps.deploy-id.outputs.website-url}}"
+          echo "Live URL: ${{steps.deploy.outputs.website-url}}"
