@@ -75,4 +75,4 @@ jobs:
           dist-folder: ./dist
       - name: Output URL
         run: |
-          echo "Live URL: ${{steps.deploy-id.outouts.website-url}}"
+          echo "Live URL: ${{steps.deploy-id.outputs.website-url}}"
