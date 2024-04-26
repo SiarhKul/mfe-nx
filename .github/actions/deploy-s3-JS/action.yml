@@ -1,6 +1,17 @@
 name: Deploy to AWS S3
 author: siarhkul
 description: Deploy static to S3
+inputs:
+  bucket:
+    description: S3 Bucket name
+    required: true
+  region:
+    description: AWS Region
+    required: false
+    default: 'use-east-1'
+  dist-folder:
+    description: Project static
+    required: true
 runs:
   using: 'node20'
   main: 'main.js'
