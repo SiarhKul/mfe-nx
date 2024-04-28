@@ -57,8 +57,8 @@ jobs:
 
   deploy:
     permissions:
-      id-token: write
-      contents: read
+      id-token: write # This is required for requesting the JWT
+      contents: read # This is required for actions/checkout
     needs: [build]
     runs-on: ubuntu-latest
     steps:
@@ -70,7 +70,7 @@ jobs:
           name: dist-files
           path: ./dist
       - name: Get AWS permissions
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::653045635854:role/CustomGithubAction
           aws-region: eu-central-1
