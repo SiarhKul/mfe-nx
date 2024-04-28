@@ -8,8 +8,9 @@ jobs:
   assign-label:
     runs-on: ubuntu-latest
     steps:
-      - name: Output Githuba obj
-        run: echo "${{toJson(github)}}"
+      - name: Output Github
+        run: |
+         echo "${{toJson(github)}}"
       - name: Assign label
         if: contains(github.event.issue.title, 'bug')
         run: |
