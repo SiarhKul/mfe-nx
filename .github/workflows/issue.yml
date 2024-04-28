@@ -1,10 +1,8 @@
 name: Issue information
 on:
   issues:
-    types: [opened, edited, deleted]
-    paths-ignore:
-      - '.github/workflows/**'
-      - '.github/actions/**'
+    #types: [opened, edited, deleted]
+
 jobs:
   info:
     runs-on: ubuntu-latest
