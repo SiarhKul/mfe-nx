@@ -69,7 +69,7 @@ jobs:
         with:
           name: dist-files
           path: ./dist
-      - name: Get AWS permissions
+      - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::653045635854:role/CustomGithubAction
