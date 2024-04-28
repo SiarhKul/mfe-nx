@@ -1,10 +1,13 @@
 name: Issue information
 on:
   issues:
-    types: [ opened, edited, deleted ]
+    types: [opened, edited, deleted]
+    paths-ignore:
+      - '.github/workflows/**'
+      - '.github/actions/**'
 jobs:
   info:
     runs-on: ubuntu-latest
     steps:
-      - name: "Output Github info"
+      - name: 'Output Github info'
         run: echo "${{toJson(github)}}"
