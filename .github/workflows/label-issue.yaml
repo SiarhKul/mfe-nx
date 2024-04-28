@@ -7,6 +7,8 @@ jobs:
   assign-label:
     runs-on: ubuntu-latest
     steps:
+      - name: Output github event issue
+      - run: echo "${{github.event.issue}}"
       - name: Assign label
         if: contains(github.event.issue.title, 'bug')
         run: |
