@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Output github event issue
+        run: echo "${{toJson( github.event.issue)}}"
+      - name: Assign label
         if: contains(github.event.issue.title, 'bug')
         run: |
           curl -X POST \
