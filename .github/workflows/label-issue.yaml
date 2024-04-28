@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: See Event Payload
-        run: echo "${{ toJson(github.event) }}"
+        run: echo "${{ toJson(github) }}"
       - name: Assign label
         if: contains(github.event.issue.title, 'bug')
         run: |
