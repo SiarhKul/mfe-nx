@@ -72,7 +72,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::653045635854:role/CustomGithubAction
+          role-to-assume: arn:aws:iam::653045635854:role/GitHubCustomAction
           aws-region: eu-central-1
       - name: Run custom JS action
         id: deploy
