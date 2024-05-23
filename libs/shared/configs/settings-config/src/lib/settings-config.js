@@ -6,6 +6,7 @@ const { createGlobPatternsForDependencies } = require('@nx/react/tailwind');
 const { join } = require('path');
 const twConfig = require('./tailwind.config');
 const createPostCssPrefix = require('./createPostCssPrefix');
+
 function postCssConfig(dirname, appPrefix, ctx) {
   return {
     plugins: {

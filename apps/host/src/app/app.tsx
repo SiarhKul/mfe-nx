@@ -24,7 +24,8 @@ export function App() {
           <IconContext.Provider
             value={{ color: 'blue', className: 'global-class-name' }}
           >
-            <div className="host">
+            <div>
+              {/*<div className="host">*/}
               <Navbar />
               <AppRouter />
             </div>

@@ -15,11 +15,13 @@
         "baseHref": "/",
         "main": "apps/about/src/main.ts",
         "tsConfig": "apps/about/tsconfig.app.json",
-        "assets": ["apps/about/src/favicon.ico", "apps/about/src/shared/assets"],
+        "assets": [
+          "apps/about/src/favicon.ico",
+          "apps/about/src/shared/assets"
+        ],
         "styles": ["apps/about/src/styles.scss"],
         "scripts": [],
-        "webpackConfig": "apps/about/webpack.config.ts",
-        "postcssConfig": "apps/about/postcss.config.js"
+        "webpackConfig": "apps/about/webpack.config.ts"
       },
       "configurations": {
         "development": {
